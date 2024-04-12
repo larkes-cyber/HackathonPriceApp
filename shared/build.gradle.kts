@@ -52,6 +52,7 @@ kotlin {
             implementation(Dependencies.Ktor.cio)
             implementation(Dependencies.Ktor.negotiation)
             implementation(Dependencies.Ktor.serialization)
+            implementation(Dependencies.Settings.settings)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

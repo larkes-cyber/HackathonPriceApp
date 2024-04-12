@@ -1,4 +1,4 @@
-package com.larkes.hackathonpriceapp.data.database.sqldelight
+package com.larkes.hackathonpriceapp.data.database.core
 
 import app.cash.sqldelight.async.coroutines.synchronous
 import app.cash.sqldelight.db.QueryResult

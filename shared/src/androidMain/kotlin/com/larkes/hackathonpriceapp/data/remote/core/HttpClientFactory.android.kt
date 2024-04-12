@@ -1,4 +1,4 @@
-package com.larkes.hackathonpriceapp.data.remote.ktor
+package com.larkes.hackathonpriceapp.data.remote.core
 
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig

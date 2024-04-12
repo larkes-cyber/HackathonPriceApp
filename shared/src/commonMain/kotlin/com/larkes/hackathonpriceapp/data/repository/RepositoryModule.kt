@@ -1,12 +1,10 @@
 package com.larkes.hackathonpriceapp.data.repository
 
-import com.larkes.hackathonpriceapp.domain.repository.TestRepository
+import com.larkes.hackathonpriceapp.domain.repository.AuthRepository
+import com.larkes.hackathonpriceapp.domain.repository.PriceRepository
 import org.koin.dsl.module
 
-internal val repositoryModule = module {
-
-    single<TestRepository> {
-        TestRepositoryImpl()
-    }
-
+val repositoryModule = module {
+    single<AuthRepository> { AuthRepositoryImpl(get(), get()) }
+    single<PriceRepository> { PriceRepositoryImpl(get(), get()) }
 }
