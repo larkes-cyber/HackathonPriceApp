@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
+		17A1E9542BC979D100C05E05 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9532BC979D100C05E05 /* CameraViewModel.swift */; };
+		17A1E9562BC97B5800C05E05 /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9552BC97B5800C05E05 /* FrameView.swift */; };
+		17A1E9592BC97D8300C05E05 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9582BC97D8300C05E05 /* CameraManager.swift */; };
+		17A1E95B2BC9809B00C05E05 /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E95A2BC9809B00C05E05 /* FrameManager.swift */; };
+		17A1E95D2BC9811C00C05E05 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E95C2BC9811C00C05E05 /* ContentViewModel.swift */; };
+		17A1E95F2BC981DF00C05E05 /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E95E2BC981DF00C05E05 /* CameraError.swift */; };
+		17A1E9622BC982A500C05E05 /* CGImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9612BC982A500C05E05 /* CGImageExtension.swift */; };
+		17A1E9642BC98B9D00C05E05 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9632BC98B9D00C05E05 /* CameraView.swift */; };
+		17A1E9672BC9905000C05E05 /* ToBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9662BC9905000C05E05 /* ToBytes.swift */; };
+		17A1E9692BC994CD00C05E05 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1E9682BC994CD00C05E05 /* Server.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		9043F940398FD755C3A8FA1F /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69D0F016A8EC8A3965986C8D /* Pods_iosApp.framework */; };
@@ -17,6 +27,16 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		17A1E9532BC979D100C05E05 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		17A1E9552BC97B5800C05E05 /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
+		17A1E9582BC97D8300C05E05 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		17A1E95A2BC9809B00C05E05 /* FrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
+		17A1E95C2BC9811C00C05E05 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		17A1E95E2BC981DF00C05E05 /* CameraError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
+		17A1E9612BC982A500C05E05 /* CGImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGImageExtension.swift; sourceTree = "<group>"; };
+		17A1E9632BC98B9D00C05E05 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		17A1E9662BC9905000C05E05 /* ToBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToBytes.swift; sourceTree = "<group>"; };
+		17A1E9682BC994CD00C05E05 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		69D0F016A8EC8A3965986C8D /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B3B792F245B9A15124980A9 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -44,6 +64,51 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		17A1E9512BC9794600C05E05 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E9552BC97B5800C05E05 /* FrameView.swift */,
+				17A1E9632BC98B9D00C05E05 /* CameraView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		17A1E9522BC9795700C05E05 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E9532BC979D100C05E05 /* CameraViewModel.swift */,
+				17A1E95C2BC9811C00C05E05 /* ContentViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		17A1E9572BC97D6900C05E05 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E9582BC97D8300C05E05 /* CameraManager.swift */,
+				17A1E95A2BC9809B00C05E05 /* FrameManager.swift */,
+				17A1E95E2BC981DF00C05E05 /* CameraError.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		17A1E9602BC9828700C05E05 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E9612BC982A500C05E05 /* CGImageExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		17A1E9652BC9903B00C05E05 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				17A1E9662BC9905000C05E05 /* ToBytes.swift */,
+				17A1E9682BC994CD00C05E05 /* Server.swift */,
+			);
+			path = Scripts;
 			sourceTree = "<group>";
 		};
 		18D27CD5A7399FF34AE326D9 /* Frameworks */ = {
@@ -84,6 +149,11 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				17A1E9652BC9903B00C05E05 /* Scripts */,
+				17A1E9602BC9828700C05E05 /* Extensions */,
+				17A1E9572BC97D6900C05E05 /* Camera */,
+				17A1E9522BC9795700C05E05 /* ViewModel */,
+				17A1E9512BC9794600C05E05 /* View */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
@@ -189,8 +259,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17A1E9562BC97B5800C05E05 /* FrameView.swift in Sources */,
+				17A1E95B2BC9809B00C05E05 /* FrameManager.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				17A1E9642BC98B9D00C05E05 /* CameraView.swift in Sources */,
+				17A1E95D2BC9811C00C05E05 /* ContentViewModel.swift in Sources */,
+				17A1E9672BC9905000C05E05 /* ToBytes.swift in Sources */,
+				17A1E9622BC982A500C05E05 /* CGImageExtension.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				17A1E9542BC979D100C05E05 /* CameraViewModel.swift in Sources */,
+				17A1E9592BC97D8300C05E05 /* CameraManager.swift in Sources */,
+				17A1E9692BC994CD00C05E05 /* Server.swift in Sources */,
+				17A1E95F2BC981DF00C05E05 /* CameraError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +400,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 3XU5RDW35H;
+				DEVELOPMENT_TEAM = JQVWS8ZA55;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -350,7 +430,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
-				DEVELOPMENT_TEAM = 3XU5RDW35H;
+				DEVELOPMENT_TEAM = JQVWS8ZA55;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
