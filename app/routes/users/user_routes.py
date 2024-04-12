@@ -56,18 +56,19 @@ async def update_user_level(user_id: int, data: UserLevelScheme, Authorize: Auth
     if query_user_level(user, session).can_edit_level_user:
         user_to_update = query_user_by_id(user_id, session)
 
-        user_to_update.type = data.user_level
+        user_to_update.is_admin = data.user_level
 
         session.commit()
 
         response = {"user_id": user_to_update.id,
-                    "type": data.user_level,
+                    "admin": data.user_level,
                     }
         return jsonable_encoder(response)
 
     return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                          detail="Нет прав на промоут пользователей"
                          )
+
 
 
 @user_router.get('/users/{user_id}')
@@ -137,3 +138,5 @@ async def list_all_users(Authorize: AuthJWT = Depends()):
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Нет доступа к пользователям"
     )
+
+

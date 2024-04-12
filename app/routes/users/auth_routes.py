@@ -38,8 +38,8 @@ async def hello(Authorize: AuthJWT = Depends()):
 
     except Exception as e:
         return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="Invalid Token"
-                            )
+                             detail="Invalid Token"
+                             )
 
     return {"message": "Hello World"}
 
@@ -78,6 +78,7 @@ async def signup(user: PassScheme):
 
     return response
 
+
 # login route
 
 @auth_router.post('/login', status_code=200)
@@ -107,8 +108,8 @@ async def login(pass_data: PassScheme, Authorize: AuthJWT = Depends()):
 
     except Exception:
         return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                            detail="Неправильный Логин или Пароль"
-                            )
+                             detail="Неправильный Логин или Пароль"
+                             )
 
 
 # refreshing tokens
@@ -125,8 +126,8 @@ async def refresh(Authorize: AuthJWT = Depends()):
 
     except Exception as e:
         return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                            detail="Please provide a valid refresh token"
-                            )
+                             detail="Please provide a valid refresh token"
+                             )
 
     current_user = Authorize.get_jwt_subject()
 

@@ -8,8 +8,8 @@ from fastapi.encoders import jsonable_encoder
 # DB session creator
 from data import db_session
 # DB queries
-from db.db_requests import query_user_by_id, query_user_level, commit_price, query_store_by_id, query_all_prices, \
-    query_price_by_id, query_store_prices
+from db.db_requests import query_user_by_id, commit_store, commit_price, query_store_by_id, query_all_prices, \
+    query_price_by_id, query_store_prices,query_all_stores
 
 store_router = APIRouter(
     prefix="/api/stores",
@@ -62,7 +62,7 @@ async def create_store(store: StoreScheme, Authorize: AuthJWT = Depends()):
 
     user = query_user_by_id(current_user, session=session)
 
-    if query_user_level(user, session).can_create_price:
+    if user.is_admin:
         commit_store(store.name, store.location, store.region, store.email, session=session)
 
         response = {
@@ -132,7 +132,7 @@ async def delete_store(store_id: int, Authorize: AuthJWT = Depends()):
 
     user = query_user_by_id(current_user, session)
 
-    if query_user_level(user, session).can_delete_price:
+    if user.is_admin:
 
         store_to_delete = query_price_by_id(store_id, session)
 

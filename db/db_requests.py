@@ -4,10 +4,6 @@ from app.EmailPhoneChecker import validate_login
 from random import randrange
 
 
-def query_user_level(user, session) -> UserLevel:
-    return session.query(UserLevel).filter(UserLevel.id == user.type).first()
-
-
 def query_user_by_id(user_id, session) -> User:
     return session.query(User).filter(User.id == user_id).first()
 
@@ -106,8 +102,8 @@ class Auth:
         return user
 
 
-def commit_price(description: str, price: int, name: str, store:int, session) -> PriceEntity:
-    new_price = PriceEntity(description=description, name=name, price=price, store=store)
+def commit_price(category: str, price: int, name: str, store: int, creator: int, session) -> PriceEntity:
+    new_price = PriceEntity(category=category, name=name, price=price, store=store, user=creator)
     session.add(new_price)
     session.commit()
     return new_price
@@ -118,15 +114,15 @@ def query_all_prices(session) -> [PriceEntity]:
 
 
 def query_price_by_id(price_id, session) -> PriceEntity:
-    return session.query(PriceEntity).filter(PriceEntity.id==price_id).first()
+    return session.query(PriceEntity).filter(PriceEntity.id == price_id).first()
 
 
 def query_store_by_id(store_id, session) -> StoreEntity:
-    return session.query(StoreEntity).filter(store_id==StoreEntity.id).first()
+    return session.query(StoreEntity).filter(store_id == StoreEntity.id).first()
 
 
-def commit_store(title, description, session) -> StoreEntity:
-    new_store = StoreEntity(title=title, description=description)
+def commit_store(name, email, location, region, session) -> StoreEntity:
+    new_store = StoreEntity(name=name, region=region, location=location, email=email)
     session.add(new_store)
     session.commit()
     return new_store
@@ -140,21 +136,19 @@ def query_price_img(price_id) -> str:
     return f"db/images/{price_id}.jpg"
 
 
-def commit_price_image(store_id, session) -> str:
-    img_id = randrange(10**9, 10**10)
-    img_url = f"db/images/{img_id}.jpg"
-
-    # SAVE IMAGEEEEEE FIXXXX PLEASE
-    # SAVE IMAGEEEEEE FIXXXX PLEASE
-    # SAVE IMAGEEEEEE FIXXXX PLEASE
-    # SAVE IMAGEEEEEE FIXXXX PLEASE
-
-    return img_url
+def commit_price_image(file) -> [str]:
+    img_id = str(randrange(10 ** 9, 10 ** 10))
+    img_path = f"db/images/{img_id}.jpg"
+    contents = file.file.read()
+    with open(img_path, 'wb') as f:
+        f.write(contents)
+    file.close()
+    return [img_id, img_path]
 
 
-def query_price_image_by_id(price_id, session) -> str:
+def query_price_image_by_id(price_id) -> str:
     return f"db/images/{price_id}.jpg"
 
 
-def query_store_prices(c_id, session) -> [PriceEntity]:
-    return session.query(PriceEntity).filter(PriceEntity.store==c_id).all()
+def query_store_prices(store_id, session) -> [PriceEntity]:
+    return session.query(PriceEntity).filter(PriceEntity.store == store_id).all()

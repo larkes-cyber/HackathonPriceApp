@@ -8,8 +8,10 @@ from fastapi.encoders import jsonable_encoder
 # DB session creator
 from data import db_session
 # DB queries
-from db.db_requests import query_user_by_id, query_user_level, commit_price, query_store_by_id, query_all_prices, \
+from db.db_requests import query_user_by_id, commit_price, query_store_by_id, query_all_prices, \
     query_price_by_id, query_store_prices
+
+from ai.price_analyser import analyse_price
 
 price_router = APIRouter(
     prefix="/api/prices",
@@ -41,7 +43,7 @@ async def place_price(price: PriceScheme, Authorize: AuthJWT = Depends()):
         ## Placing Price
         This requires the following
         - name : str
-        - description : str
+        - category : str
         - store : int
         - price : int
 
@@ -62,14 +64,19 @@ async def place_price(price: PriceScheme, Authorize: AuthJWT = Depends()):
 
     user = query_user_by_id(current_user, session=session)
 
-    if query_user_level(user, session).can_create_price:
-        commit_price(price.description, price.price, price.name, price.store, session=session)
+    if user.is_spam:
+        analyse_res = analyse_price(name=price.name, price=price.price,
+                                    category=price.category, store=price.store)
 
-        response = {"name": price.name,
-                    "price": price.price,
-                    "description": p.description,
-                    "store": store.title if store is not None else ""
-                    }
+        commit_price(category=price.category, price=price.price, name=price.name, store=price.store, creator=user.id, session=session)
+
+        response = {
+            "name": price.name,
+            "price": price.price,
+            "category": price.category,
+            "store": price.store,
+            "analyse_result": analyse_res
+        }
 
         return jsonable_encoder(response)
 
@@ -79,15 +86,32 @@ async def place_price(price: PriceScheme, Authorize: AuthJWT = Depends()):
 
 
 @price_router.get('/prices')
-async def list_all_prices():
+async def list_all_prices(Authorize: AuthJWT = Depends()):
     """
         ## List all prices
         This lists all prices.
     """
-    session = db_session.create_session()
-    prices = query_all_prices(session)
+    try:
+        Authorize.jwt_required()
 
-    return jsonable_encoder(prices)
+    except Exception as e:
+        return HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Неправильный токен"
+        )
+
+    current_user = Authorize.get_jwt_subject()
+
+    session = db_session.create_session()
+
+    user = query_user_by_id(current_user, session=session)
+    if user.is_admin:
+        prices = query_all_prices(session)
+        return jsonable_encoder(prices)
+
+    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                         detail="Вы не можете загрузить ценники"
+                         )
 
 
 @price_router.get('/prices/{price_id}')
@@ -105,8 +129,11 @@ async def get_price_by_id(price_id: int):
                              )
     response = {"name": price.name,
                 "price": price.price,
-                "description": price.description,
-                "store": price.store
+                "category": price.category,
+                "store": price.store,
+                "creator": price.user,
+                "spam": price.spam,
+                "strike": price.strike,
                 }
 
     return jsonable_encoder(response)
@@ -115,18 +142,22 @@ async def get_price_by_id(price_id: int):
 @price_router.get('/store/{store_id}')
 async def get_store_prices_by_id(store_id: int):
     """
-        ## Get an price by its ID
+        ## Get price by its ID
     """
 
     session = db_session.create_session()
     prices = query_store_prices(store_id, session)
 
-    response = list(map(lambda price: {"id": price.id,
-                                 "name": price.name,
-                                 "price": price.price,
-                                 "description": price.description,
-                                 "store": price.store
-                                 }, prices))
+    response = list(map(lambda price: {
+        "id": price.id,
+        "name": price.name,
+        "price": price.price,
+        "category": price.category,
+        "store": price.store,
+        "creator": price.user,
+        "spam": price.spam,
+        "strike": price.strike,
+    }, prices))
 
     return jsonable_encoder(response)
 
@@ -137,7 +168,7 @@ async def update_price(price_id: int, price: PriceScheme, Authorize: AuthJWT = D
         ## Updating price
         This requires the following
         - name : str
-        - description : str
+        - category : str
         - store : int
         - price : int
     """
@@ -154,11 +185,11 @@ async def update_price(price_id: int, price: PriceScheme, Authorize: AuthJWT = D
 
     user = query_user_by_id(current_user, session)
 
-    if query_user_level(user, session).can_create_price:
+    if user.is_admin:
         price_to_update = query_price_by_id(price_id, session)
 
         price_to_update.name = price.name
-        price_to_update.description = price.description
+        price_to_update.category = price.category
         price_to_update.price = price.price
         price_to_update.store = price.store
         session.commit()
@@ -166,7 +197,7 @@ async def update_price(price_id: int, price: PriceScheme, Authorize: AuthJWT = D
 
         response = {"name": price.name,
                     "price": price.price,
-                    "description": price.description,
+                    "category": price.category,
                     "store": price.store
                     }
         return jsonable_encoder(response)
@@ -177,7 +208,7 @@ async def update_price(price_id: int, price: PriceScheme, Authorize: AuthJWT = D
 
 
 @price_router.delete('/price/delete/{price_id}/', status_code=status.HTTP_204_NO_CONTENT)
-async def delete_an_price(price_id: int, Authorize: AuthJWT = Depends()):
+async def delete_price(price_id: int, Authorize: AuthJWT = Depends()):
     """
         ## Delete price
         This deletes an order by its ID
@@ -195,7 +226,7 @@ async def delete_an_price(price_id: int, Authorize: AuthJWT = Depends()):
 
     user = query_user_by_id(current_user, session)
 
-    if query_user_level(user, session).can_delete_price:
+    if user.is_admin:
 
         price_to_delete = query_price_by_id(price_id, session)
 
@@ -206,6 +237,46 @@ async def delete_an_price(price_id: int, Authorize: AuthJWT = Depends()):
 
         session.delete(price_to_delete)
 
+        session.commit()
+
+        return price_to_delete
+
+    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                         detail="Вы не можете удалить ценник"
+                         )
+
+
+@price_router.delete('/price/spam/{price_id}/', status_code=status.HTTP_204_NO_CONTENT)
+async def spam_price(price_id: int, Authorize: AuthJWT = Depends()):
+    """
+        ## Spam price
+        This make spam price and user by its ID
+    """
+
+    try:
+        Authorize.jwt_required()
+
+    except Exception as e:
+        return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Token")
+
+    current_user = Authorize.get_jwt_subject()
+
+    session = db_session.create_session()
+
+    user = query_user_by_id(current_user, session)
+
+    if user.is_admin:
+
+        price_to_delete = query_price_by_id(price_id, session)
+
+        if price_to_delete is None:
+            return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+                                 detail="Ценника не существует"
+                                 )
+
+        user_to_spam = query_user_by_id(price_to_delete.user, session)
+        user_to_spam.is_spam = True
+        session.delete(price_to_delete)
         session.commit()
 
         return price_to_delete
