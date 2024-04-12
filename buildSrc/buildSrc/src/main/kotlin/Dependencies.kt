@@ -88,6 +88,7 @@ object Dependencies {
     object Settings{
         private const val version = "1.1.0"
         const val settings = "com.russhwolf:multiplatform-settings-no-arg:$version"
+        const val test = "com.russhwolf:multiplatform-settings-test:$version"
     }
 
 

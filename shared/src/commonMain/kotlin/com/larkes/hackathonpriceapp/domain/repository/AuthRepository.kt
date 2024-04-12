@@ -7,4 +7,5 @@ interface AuthRepository {
     suspend fun performLogin(authData: AuthData)
     suspend fun performRegistration(authData: AuthData)
     suspend fun fetchAuthToken(): Token?
+    suspend fun checkAccessToken()
 }

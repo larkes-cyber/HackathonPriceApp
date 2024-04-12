@@ -24,7 +24,7 @@ class StoreKtorDataSource(
             url {
                 path(FETCH_STORES)
                 headers {
-                    header("Authorization", "Bearer ${tokenRequest.token}")
+                    header("Authorization", "Bearer ${tokenRequest.accessToken}")
                 }
             }
         }

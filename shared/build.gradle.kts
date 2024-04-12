@@ -44,6 +44,7 @@ kotlin {
         androidMain.dependencies {
             implementation(Dependencies.SqlDelight.androidDriver)
             implementation(Dependencies.Ktor.android_client)
+            implementation(Dependencies.Settings.test)
             implementation(Dependencies.SqlDelight.testDriver)
 
         }
@@ -54,6 +55,7 @@ kotlin {
             implementation(Dependencies.Ktor.negotiation)
             implementation(Dependencies.Ktor.serialization)
             implementation(Dependencies.Serialization.serialization)
+            implementation(Dependencies.Settings.test)
             implementation(Dependencies.Settings.settings)
         }
         commonTest.dependencies {

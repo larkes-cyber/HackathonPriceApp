@@ -15,10 +15,13 @@ class PriceRepositoryImpl(
 ):PriceRepository {
     override suspend fun performPricePhoto(byteArray: ByteArray): ScannedPrice {
         val token = authRepository.fetchAuthToken() ?: throw Exception("Unathorized user")
+        authRepository.checkAccessToken()
 
         val response = priceKtorDataSource.sendImage(
             byteArray = byteArray,
-            tokenRequest = TokenRequest(token = token.token)
+            tokenRequest = TokenRequest(
+                token = token.accessToken,
+            )
         )
 
         return ScannedPrice(
@@ -31,7 +34,7 @@ class PriceRepositoryImpl(
 
     override suspend fun performPrice(performedPrice: PerformedPrice): PriceResult {
         val token = authRepository.fetchAuthToken() ?: throw Exception("Unathorized user")
-
+        authRepository.checkAccessToken()
         val response = priceKtorDataSource.sendPerformedPrice(
             performedPrice = PerformedPriceRequest(
                 price = performedPrice.price,
@@ -40,7 +43,7 @@ class PriceRepositoryImpl(
                 name = performedPrice.name
             ),
             tokenRequest = TokenRequest(
-                token = token.token
+                token = token.accessToken
             )
         )
 

@@ -4,7 +4,6 @@ import com.larkes.hackathonpriceapp.data.remote.source.models.PerformedPriceRequ
 import com.larkes.hackathonpriceapp.data.remote.source.models.PriceResponse
 import com.larkes.hackathonpriceapp.data.remote.source.models.ScannedPriceResponse
 import com.larkes.hackathonpriceapp.data.remote.source.models.TokenRequest
-import com.larkes.hackathonpriceapp.domain.model.PerformedPrice
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.forms.MultiPartFormDataContent
@@ -14,7 +13,6 @@ import io.ktor.client.request.headers
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 import io.ktor.client.statement.bodyAsText
-import io.ktor.client.utils.EmptyContent.headers
 import io.ktor.http.ContentType
 import io.ktor.http.Headers
 import io.ktor.http.HttpHeaders
@@ -33,7 +31,7 @@ class PriceKtorDataSource(
                 MultiPartFormDataContent(
 
                     formData {
-                        header("Authorization", "Bearer ${tokenRequest.token}")
+                        header("Authorization", "Bearer ${tokenRequest.accessToken}")
                         append("description", "user_image")
                         append("image", byteArray, Headers.build {
                             append(HttpHeaders.ContentType, "image/png")
@@ -59,7 +57,7 @@ class PriceKtorDataSource(
             url {
                 path(SEND_PERFORMED_PRICE)
                 headers {
-                    header("Authorization", "Bearer ${tokenRequest.token}")
+                    header("Authorization", "Bearer ${tokenRequest.accessToken}")
                     setBody(performedPrice)
                 }
             }

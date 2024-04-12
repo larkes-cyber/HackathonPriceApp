@@ -1,8 +1,5 @@
 import com.larkes.hackathonpriceapp.di.InjectUseCase
-import com.larkes.hackathonpriceapp.di.PlatformSDK
-import com.larkes.hackathonpriceapp.di.TestPlatformSDK
 import com.larkes.hackathonpriceapp.domain.model.AuthData
-import com.larkes.hackathonpriceapp.domain.platform.PlatformConfiguration
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test

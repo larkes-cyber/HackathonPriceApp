@@ -9,17 +9,24 @@ class AuthSettingsDataSource(
 
     suspend fun putToken(tokenEntity: TokenEntity){
         settings.putString(
-            key = TOKEN_KEY,
-            value = tokenEntity.token
+            key = ACCESS_TOKEN_KEY,
+            value = tokenEntity.accessToken
+        )
+        settings.putString(
+            key = REFRESH_TOKEN_KEY,
+            value = tokenEntity.refreshToken
         )
     }
 
     suspend fun fetchToken():TokenEntity?{
-        val token = settings.getString(TOKEN_KEY, "").ifEmpty { null }
-         return if(token == null) null else TokenEntity(token)
+        val accessToken = settings.getString(ACCESS_TOKEN_KEY, "").ifEmpty { null }
+        val refreshToken = settings.getString(REFRESH_TOKEN_KEY, "").ifEmpty { null }
+        if(accessToken == null || refreshToken == null) return null
+         return TokenEntity(accessToken = accessToken, refreshToken = refreshToken)
     }
 
     companion object{
-        private const val TOKEN_KEY = "token_key"
+        private const val ACCESS_TOKEN_KEY = "access_token_key"
+        private const val REFRESH_TOKEN_KEY = "refresh_token_key"
     }
 }

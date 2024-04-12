@@ -2,6 +2,7 @@ package com.larkes.hackathonpriceapp.data.repository
 
 import com.larkes.hackathonpriceapp.data.remote.source.AuthKtorDataSource
 import com.larkes.hackathonpriceapp.data.remote.source.models.AuthRequest
+import com.larkes.hackathonpriceapp.data.remote.source.models.TokenRequest
 import com.larkes.hackathonpriceapp.data.settings.source.AuthSettingsDataSource
 import com.larkes.hackathonpriceapp.data.settings.source.models.TokenEntity
 import com.larkes.hackathonpriceapp.domain.model.AuthData
@@ -18,7 +19,8 @@ class AuthRepositoryImpl(
             number = authData.number,
             password = authData.password
         ))
-        authSettingsDataSource.putToken(TokenEntity(token = token))
+        authSettingsDataSource.putToken(TokenEntity(  accessToken = token.accessToken,
+            refreshToken = token.refreshToken))
     }
 
     override suspend fun performRegistration(authData: AuthData) {
@@ -33,6 +35,22 @@ class AuthRepositoryImpl(
 
     override suspend fun fetchAuthToken(): Token? {
         val token = authSettingsDataSource.fetchToken() ?: return null
-        return Token(token = token.token)
+        return Token(
+            accessToken = token.accessToken,
+            refreshToken = token.refreshToken
+        )
     }
+
+    override suspend fun checkAccessToken() {
+        val token = authSettingsDataSource.fetchToken() ?: return
+        try {
+            authKtorDataSource.checkAccessToken(TokenRequest(
+                token = token.accessToken
+            ))
+        }catch (e:Exception){
+            authKtorDataSource.refreshToken(TokenRequest(token = token.refreshToken))
+        }
+
+    }
+
 }
