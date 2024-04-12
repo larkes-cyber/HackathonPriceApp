@@ -8,7 +8,7 @@ from fastapi.encoders import jsonable_encoder
 # DB session creator
 from data import db_session
 # DB queries
-from db.db_requests import (query_user_by_id, query_user_level, query_all_users)
+from db.db_requests import (query_user_by_id, query_all_users)
 user_router = APIRouter(
     prefix="/api/users",
     tags=['users']
