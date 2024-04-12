@@ -40,6 +40,12 @@ android {
 }
 
 dependencies {
+    implementation(Dependencies.Android.Compose.navigation)
+    implementation(Dependencies.Camera.core)
+    implementation(Dependencies.Camera.extensions)
+    implementation(Dependencies.Camera.lifecycle)
+    implementation(Dependencies.Camera.view)
+    implementation(Dependencies.Permissions.accompanist)
     implementation(projects.shared)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)

@@ -29,6 +29,7 @@ object Dependencies {
             const val material = "androidx.compose.material:material:$version"
             const val icons = "androidx.compose.material:material-icons-core:$version"
             const val tooling = "androidx.compose.ui:ui-tooling:$version"
+            const val navigation = "androidx.navigation:navigation-compose:2.7.5"
         }
         object DateTime {
             const val core = "org.jetbrains.kotlinx:kotlinx-datetime:0.6.0-RC.2"
@@ -63,6 +64,19 @@ object Dependencies {
     object Serialization{
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-serialization:1.9.20"
         const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2"
+    }
+
+    object Camera{
+        private const val version = "1.3.2"
+        const val core = "androidx.camera:camera-camera2:$version"
+        const val lifecycle = "androidx.camera:camera-lifecycle:$version"
+        const val view = "androidx.camera:camera-view:$version"
+        const val extensions = "androidx.camera:camera-extensions:$version"
+    }
+
+    object Permissions{
+        private const val version = "0.34.0"
+        const val accompanist = "com.google.accompanist:accompanist-permissions:$version"
     }
 
     object Coroutines{
