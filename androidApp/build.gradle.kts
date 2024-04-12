@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(Dependencies.Android.Compose.navigation)
+    implementation(Dependencies.Koin.core)
     implementation(Dependencies.Camera.core)
     implementation(Dependencies.Camera.extensions)
     implementation(Dependencies.Camera.lifecycle)

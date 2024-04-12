@@ -28,6 +28,11 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.larkes.hackathonpriceapp.android.navigation.Screen
 import com.larkes.hackathonpriceapp.android.screen.main.views.CameraView
+import com.larkes.hackathonpriceapp.di.InjectUseCase
+import com.larkes.hackathonpriceapp.domain.model.AuthData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @SuppressLint("PermissionLaunchedDuringComposition")
 @OptIn(ExperimentalPermissionsApi::class)
@@ -38,6 +43,12 @@ fun MainScreen(
 
     val permission = Manifest.permission.CAMERA
     val context = LocalContext.current
+
+    LaunchedEffect(Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            println(InjectUseCase.useLoginUser.execute(AuthData("","","")).message + "dfsdfsdfsdf")
+        }
+    }
 
     val cameraIsGranted = remember{
         mutableStateOf<Boolean?>(null)

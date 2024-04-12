@@ -13,6 +13,7 @@ object Dependencies {
         const val serialization = "io.ktor:ktor-serialization-kotlinx-json:$version"
         const val negotiation = "io.ktor:ktor-client-content-negotiation:$version"
         const val cio = "io.ktor:ktor-client-cio:$version"
+        const val test = "io.ktor:ktor-client-mock:$version"
     }
 
     object Compose{

@@ -3,6 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     id("app.cash.sqldelight")
+    id("org.jetbrains.kotlin.plugin.serialization")
 }
 
 sqldelight {
@@ -52,6 +53,7 @@ kotlin {
             implementation(Dependencies.Ktor.cio)
             implementation(Dependencies.Ktor.negotiation)
             implementation(Dependencies.Ktor.serialization)
+            implementation(Dependencies.Serialization.serialization)
             implementation(Dependencies.Settings.settings)
         }
         commonTest.dependencies {
@@ -59,6 +61,7 @@ kotlin {
         }
         androidNativeTest.dependencies {
             implementation(Dependencies.SqlDelight.testDriver)
+            implementation(Dependencies.Ktor.test)
         }
         iosMain.dependencies {
             implementation(Dependencies.SqlDelight.iosDriver)

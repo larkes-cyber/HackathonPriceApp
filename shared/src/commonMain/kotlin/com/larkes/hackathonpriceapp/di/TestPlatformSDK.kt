@@ -9,19 +9,16 @@ import com.larkes.hackathonpriceapp.domain.platform.PlatformConfiguration
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 
-object PlatformSDK {
-
-    fun init(configuration: PlatformConfiguration) {
+object TestPlatformSDK {
+    fun init() {
         val diTree = startKoin {
-            modules(module {
-                single { configuration }
-            })
             modules(databaseModule)
             modules(remoteModule)
             modules(settingModule)
             modules(repositoryModule)
             modules(domainModule)
-        }.koin
+        }
     }
+
 
 }
