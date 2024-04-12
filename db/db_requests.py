@@ -57,6 +57,7 @@ class Auth:
         # 1. Validating Login
         reg_type = validate_login(login)
         if reg_type == "email":
+            print(reg_type)
             # 2. Check if User exists
             if is_email_exist(session, login):
                 raise Exception
@@ -64,8 +65,7 @@ class Auth:
             # 3. Register him
             user = User(
                 email=login,
-                hashed_password=encrypt(password, self.secret),
-                type=2
+                hashed_password=encrypt(password, self.secret)
             )
         elif reg_type == "phone":
             # 2. Check if User exists
