@@ -3,40 +3,38 @@ import addIcon from "../icons/Add.svg";
 import SearchIcon from "../icons/SearchIcon.svg"
 import Settings from "../icons/Settings.svg"
 import Clear from "../icons/Close.svg"
-import LectureElement from "./LectureElement";
-import server_url from "../site"
+import PriceElement from "../components/PriceElement";
 
 import "../styles/lectures.scss"
 
-function Lectures({lectures, nav}) {
+function Prices({prices, changeId, chosen}) {
 
   const [settings, setSettings] = useState(false);
   const [searchProp, setSearchProp] = useState('')
 
   let id_ = -1;
+  console.log(prices)
+  let Stores = [...new Set(prices.map((value)=>value.store))]
+  let Categories = [...new Set(prices.map((value)=>value.category))]
+  const [chosenF, setChosenF] = useState(Stores)
+  const [chosenT, setChosenT] = useState(Categories)
+  // const lecView = prices.filter((e)=>chosenF.includes(e.store) && chosenT.includes(e.category) && e.name.includes(searchProp)).map(
+  //   (val) =>
+  //   { 
+  //     id_++;
+  //     console.log("aaaaa")
+  //     return <PriceElement id={id_} changeId={changeId} name={val.name} date={""} category={val.category} price={ val.price } 
+  //      data={val.data}
+  //     />
       
-  let FIOs = [...new Set(lectures.map((value)=>value.FIO))]
-  let themes = [...new Set(lectures.map((value)=>value.theme))]
-  const [chosenF, setChosenF] = useState(FIOs)
-  const [chosenT, setChosenT] = useState(themes)
-  const lecView = lectures.filter((e)=>chosenF.includes(e.FIO) && chosenT.includes(e.theme) && e.data.short_descr.includes(searchProp)).map(
-    (val) =>
-    { 
-      id_++;
-      console.log(val.data)
-      return <LectureElement id={id_} title={val.title} date={val.FIO} theme={val.theme} short_desc={ val.data['short_descr'].length > 25 ?val.data['short_descr'].slice(0, 25)+'...' : val.data['short_descr'] } 
-      nav={
-        nav} data={val.data}
-      />
-      
-    }
+  //   }
 
-  )
+  // )
+  console.log(prices)
+  const lecView = prices.map((val) => <PriceElement id={val.id} changeId={changeId} name={val.name} date={""} category={val.category} price={ val.price } />)
+  //      data={val.data}
+  //     />)
 
-  console.log(FIOs, themes)
-
-  console.log(chosenF, chosenT)
-  
   return (
     <div className="lcsViewContainer">
       <div className="search">
@@ -50,13 +48,13 @@ function Lectures({lectures, nav}) {
         <div className="fios">
           <div className="title">Авторы</div>
           <div className="list">
-          {FIOs.map((v, i)=>{return <div className="el">
+          {Stores.map((v, i)=>{return <div className="el">
               
-              <input type="checkbox" checked={chosenF.indexOf(FIOs[i]) !== -1} onChange={()=>
-              {if (chosenF.indexOf(FIOs[i]) !== -1){
+              <input type="checkbox" checked={chosenF.indexOf(Stores[i]) !== -1} onChange={()=>
+              {if (chosenF.indexOf(Stores[i]) !== -1){
                   setChosenF(chosenF.filter(a => a !== v))
                 } else {
-                  setChosenF([...chosenF, FIOs[i]])
+                  setChosenF([...chosenF, Stores[i]])
                 }
             }}/>{[v]}
             </div>})}
@@ -65,13 +63,13 @@ function Lectures({lectures, nav}) {
         <div className="themes">
           <div className="title">Темы</div>
           <div className="list">
-            {themes.map((v, i)=>{return <div className="el">
+            {Categories.map((v, i)=>{return <div className="el">
               
-              <input type="checkbox" checked={chosenT.indexOf(themes[i]) !== -1} onChange={()=>
-              {if (chosenT.indexOf(themes[i]) !== -1){
+              <input type="checkbox" checked={chosenT.indexOf(Categories[i]) !== -1} onChange={()=>
+              {if (chosenT.indexOf(Categories[i]) !== -1){
                   setChosenT(chosenT.filter(a => a !== v))
                 } else {
-                  setChosenT([...chosenT, themes[i]])
+                  setChosenT([...chosenT, Categories[i]])
                 }
             }}/>{[v]}
             </div>})}
@@ -79,10 +77,10 @@ function Lectures({lectures, nav}) {
         </div>
       </div>: ""}
       </div>
-      <div onClick={()=>nav("/add")} className="loadButtonWrapper button">
+      {/* <div onClick={()=>nav("/add")} className="loadButtonWrapper button">
         <img src={addIcon}/>
         Добавить
-      </div>
+      </div> */}
       <div className="lcsContainer">
         {lecView}
         </div>
@@ -90,4 +88,4 @@ function Lectures({lectures, nav}) {
   );
 }
 
-export default Lectures;
+export default Prices;

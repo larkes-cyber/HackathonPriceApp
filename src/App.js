@@ -1,15 +1,19 @@
 import './styles/App.scss';
-import Header from './components/Header';
-import Lectures from './components/Lectures';
+import React, {useEffect, useState} from 'react';
+import { useNavigate } from 'react-router';
 import {BrowserRouter, Route, Routes, useParams, useSearchParams } from 'react-router-dom';
 import CleanView from './components/CleanView';
 import CreateView from './components/CreateView';
-import React, {useState} from 'react';
-import LectureView from './components/PriceView';
-import GlosView from './components/GlosView';
-import EditLectureView from "./components/EditLectureView"
+import PriceView from './components/PriceView';
+import Header from './components/Header';
+import Prices from './components/Prices';
 
-import { useNavigate } from 'react-router';
+import PricesPage from './pages/Prices';
+import SignUpPage from './pages/SignUp';
+import LoginPage from './pages/Login';
+import StoresPage from './pages/Stores';
+import UsersPage from './pages/Users';
+import Panel from './pages/Panel';
 
 function useStoredState(key, defaultValue) {
   // 👇 Load stored state into regular react component state
@@ -39,32 +43,18 @@ function useStoredState(key, defaultValue) {
 
 
 function App() {
-  const [searchParams, setSearchParams] = useSearchParams()
-  let id = Number(searchParams.get('id'))
 
-  const add_lecture = (data, FIO, title, theme)=>{
-    setLectures([...lectures, {data: data, FIO: FIO, featured: false, theme:theme, title:title}])
-  }
-  const nav = useNavigate()
-
-  const [lectures, setLectures] = useStoredState('lectures', [])
-
+  const [cookie, setCookie] = useStoredState('cookie', "")
   return (
     <div className="App">
-      <div className={'left '+(window.location.pathname==="/" ?'aaal':'')}>
-        <Header/>
-        <Lectures nav={nav} lectures={lectures}/>
-      </div>
-      <div className={'right '+(window.location.pathname==="/" ?'aaar':'')}>
-          <Routes>
-            <Route path="/" element={<CleanView/>} />
-            <Route path="/add" element={<CreateView nav={nav} lectures={lectures} add_lecture={add_lecture}/>} />
-            <Route path="/lecture/" element={<LectureView setLectures={setLectures} lectures={lectures} nav={nav} id={id}/>} />
-            <Route path="/edit_lecture/:id" element={<EditLectureView setLectures = {setLectures} lectures={lectures} nav={nav}/>} />
-            <Route path="/glos/:id" element={<GlosView lectures={lectures} nav={nav}/>} />
-          </Routes>
-      </div>
-      {/* <GlosView/> */}
+      <Routes>
+        <Route path='/' element={<Panel cookie={cookie} setCookie={setCookie}/>}/>
+        <Route path='/prices' element={<PricesPage cookie={cookie} setCookie={setCookie}/>}/>
+        <Route path='/stores' element={<StoresPage cookie={cookie}/>}/>
+        <Route path='/login' element={<LoginPage setCookie={setCookie}/>}/>
+        <Route path='/signup' element={<SignUpPage setCookie={setCookie}/>}/>
+        <Route path='/users' element={<UsersPage/>}/>
+      </Routes>
     </div>
   );
 }

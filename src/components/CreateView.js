@@ -3,13 +3,14 @@ import addIcon from "../icons/Add.svg";
 import SearchIcon from "../icons/SearchIcon.svg"
 import Settings from "../icons/Settings.svg"
 import Clear from "../icons/CloseBig.svg"
-import LectureElement from "./LectureElement";
+import PriceElement from "./PriceElement";
 import server_url from "../site";
 
 import "../styles/createview.scss"
 import FileUI from "./FileUI";
-import FileLecture from "./LectureUpload";
+import FileLecture from "./PriceUpload";
 import { useParams } from 'react-router-dom';
+
 function CreateView({add_lecture, nav, lectures}) {
 
     const[isLoading, setLoading] = useState(false)

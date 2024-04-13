@@ -4,8 +4,8 @@ import "../styles/lecture.scss"
 import ContentLoader from "react-content-loader";
 
 
-function LectureElement({id, nav, theme, date, title, short_desc, data}) {
-    const func = ()=>{fetch(site_url+"get_image/?id="+data.id, {
+function PriceElement({id, changeId, price, date, name, category, data}) {
+    const func = ()=>{fetch(site_url+"prices/images/"+id, {
         method: 'GET',
           
         // 👇 Set headers manually for single file upload
@@ -37,16 +37,16 @@ function LectureElement({id, nav, theme, date, title, short_desc, data}) {
     useEffect(()=>
     {func();forceUpdate()}, id)
 
-    return <div onClick={()=>{func();nav('/lecture?id='+id)}} className="lecWrapper" key={data.id}>
+    return <div onClick={()=>{changeId(id)}} className="lecWrapper" key={id}>
         {img}
         <div className="lecDesc">
-            <div className="lecTitle">{title}</div>
-            <div className="lecShort light-text">{short_desc}</div>
+            <div className="lecTitle">{name}</div>
+            <div className="lecShort light-text">{price}</div>
             <div className="lecThemeDate light-text">
-                {theme} · {date}
+                {category} · {date}
             </div>
         </div>
     </div>
 }
 
-export default LectureElement;
+export default PriceElement;

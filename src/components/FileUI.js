@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import FileIcon from "../components/FileIcon";
+import FileIcon from "../icons/FileIcon";
 
 export default function FileUI(
   {fileRef,
