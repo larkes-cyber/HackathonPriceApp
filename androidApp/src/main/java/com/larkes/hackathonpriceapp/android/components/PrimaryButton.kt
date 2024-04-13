@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun AuthPrimaryButton(
+fun PrimaryButton(
     modifier: Modifier = Modifier,
     title:String = "",
     enabled:Boolean = true,

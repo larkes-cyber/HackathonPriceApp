@@ -25,14 +25,13 @@ class PriceKtorDataSource(
 ) {
 
     suspend fun sendImage(byteArray: ByteArray, tokenRequest: TokenRequest): ScannedPriceResponse {
+        println(tokenRequest.token + " vxvxvvvvv")
+
         val response = httpClient.post(){
             url{
                 path(SEND_IMAGE)
             }
             setBody(
-
-
-
                 MultiPartFormDataContent(
                     formData {
                         header("Authorization", "Bearer ${tokenRequest.token}")

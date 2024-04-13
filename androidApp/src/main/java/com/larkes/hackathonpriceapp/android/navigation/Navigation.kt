@@ -10,6 +10,7 @@ import com.larkes.hackathonpriceapp.android.screen.history.HistoryScreen
 import com.larkes.hackathonpriceapp.android.screen.main.MainScreen
 import com.larkes.hackathonpriceapp.android.screen.splash.SplashScreen
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.AuthViewModel
+import com.larkes.hackathonpriceapp.android.viewmodels.main.MainViewModel
 import com.larkes.hackathonpriceapp.android.viewmodels.splash.SplashViewModel
 
 @Composable
@@ -20,7 +21,8 @@ fun Navigation(
     NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
 
         composable(Screen.MainScreen.route){
-            MainScreen(navController = navController)
+            val viewModel:MainViewModel = hiltViewModel()
+            MainScreen(navController = navController, viewModel = viewModel)
         }
 
         composable(Screen.HistoryScreen.route){

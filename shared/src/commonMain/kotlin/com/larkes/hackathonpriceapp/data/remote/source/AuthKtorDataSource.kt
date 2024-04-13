@@ -59,7 +59,7 @@ class AuthKtorDataSource(
     }
 
     suspend fun checkAccessToken(tokenRequest: TokenRequest){
-        val response =  httpClient.post{
+        val response =  httpClient.get{
             contentType(ContentType.Application.Json)
             headers {
                 header("Authorization", "Bearer ${tokenRequest.token}")
@@ -68,14 +68,15 @@ class AuthKtorDataSource(
                 path(CHECK_TOKEN)
             }
         }
+        println(response.status.toString() + " cgbcvbcvvcc")
         if(response.status.isSuccess().not()){
-            val error = response.bodyAsText()
+            val error = response.status.description
             throw Exception(error)
         }
 
     }
 
-    suspend fun refreshToken(tokenRequest: TokenRequest){
+    suspend fun refreshToken(tokenRequest: TokenRequest):String{
         val response =  httpClient.get{
             contentType(ContentType.Application.Json)
             url {
@@ -90,6 +91,7 @@ class AuthKtorDataSource(
             throw Exception(error)
         }
 
+        return response.body()
     }
 
     companion object{

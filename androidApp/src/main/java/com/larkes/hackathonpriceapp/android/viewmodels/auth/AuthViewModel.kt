@@ -52,6 +52,7 @@ class AuthViewModel @Inject constructor():ViewModel() {
 
     }
 
+
     private fun obtainDone() {
         viewModelScope.launch {
             try {

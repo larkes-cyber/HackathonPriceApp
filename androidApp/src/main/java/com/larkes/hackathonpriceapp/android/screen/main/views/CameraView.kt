@@ -36,12 +36,11 @@ import java.util.concurrent.Executor
 
 @Composable
 fun CameraView(
-    onSuccess:(ByteArray) -> Unit
+    context: Context,
+    cameraController: LifecycleCameraController
 ) {
 
-    val context: Context = LocalContext.current
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
-    val cameraController: LifecycleCameraController = remember { LifecycleCameraController(context) }
 
     Box(modifier = Modifier.fillMaxSize()) {
         AndroidView(
@@ -75,8 +74,4 @@ fun Bitmap.rotateBitmap(rotationDegrees: Int): Bitmap {
     return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
 }
 
-fun bitmapToByteArray(bitmap: Bitmap): ByteArray {
-    val stream = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
-    return stream.toByteArray()
-}
+

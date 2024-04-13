@@ -11,20 +11,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.pointer.PointerIcon.Companion.Text
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.larkes.hackathonpriceapp.android.components.AuthPrimaryButton
+import com.larkes.hackathonpriceapp.android.components.PrimaryButton
 import com.larkes.hackathonpriceapp.android.components.AuthTabButton
-import com.larkes.hackathonpriceapp.android.components.AuthTextField
+import com.larkes.hackathonpriceapp.android.components.PrimaryTextField
 import com.larkes.hackathonpriceapp.android.components.PasswordTextField
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.models.AuthEvent
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.models.AuthState
@@ -80,7 +76,7 @@ fun AuthView(
                 verticalArrangement = Arrangement.spacedBy(15.dp)
             ) {
                 if(state.isRegistration.not()){
-                    AuthTextField(
+                    PrimaryTextField(
                         title = if(state.isEmailMethod) "Введите почту" else "Введите номер",
                         text = if(state.isEmailMethod) state.email ?: "" else state.number ?: "",
                         modifier = Modifier.fillMaxWidth()
@@ -88,14 +84,14 @@ fun AuthView(
                         onEvent(if(state.isEmailMethod) AuthEvent.EmailChanged(it) else AuthEvent.NumberChanged(it))
                     }
                 }else{
-                    AuthTextField(
+                    PrimaryTextField(
                         title = "Введите почту",
                         text = state.email ?: "",
                         modifier = Modifier.fillMaxWidth()
                     ){
                         onEvent(AuthEvent.EmailChanged(it))
                     }
-                    AuthTextField(
+                    PrimaryTextField(
                         title = "Введите номер",
                         text = state.number ?: "",
                         modifier = Modifier.fillMaxWidth()
@@ -116,7 +112,7 @@ fun AuthView(
             }
 
             Spacer(modifier = Modifier.height(50.dp))
-            AuthPrimaryButton(
+            PrimaryButton(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp),

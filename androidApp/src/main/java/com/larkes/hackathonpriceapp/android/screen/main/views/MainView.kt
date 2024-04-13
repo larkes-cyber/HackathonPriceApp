@@ -23,9 +23,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,19 +34,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
 import com.larkes.hackathonpriceapp.android.R
 import com.larkes.hackathonpriceapp.android.navigation.Screen
+import com.larkes.hackathonpriceapp.android.viewmodels.main.models.MainAction
+import com.larkes.hackathonpriceapp.android.viewmodels.main.models.MainEvent
+import com.larkes.hackathonpriceapp.android.viewmodels.main.models.MainState
 import java.util.concurrent.Executor
 
 @Composable
-fun MainView() {
+fun MainView(
+    viewState:MainState,
+    onEvent:(MainEvent) -> Unit
+) {
 
     val permission = Manifest.permission.CAMERA
     val context = LocalContext.current
 
+    val cameraController: LifecycleCameraController = remember { LifecycleCameraController(context) }
 
     val cameraIsGranted = remember{
         mutableStateOf<Boolean?>(null)
@@ -67,9 +74,7 @@ fun MainView() {
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        CameraView(){
-
-        }
+        CameraView(context = context, cameraController = cameraController)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -108,6 +113,10 @@ fun MainView() {
                         .clip(RoundedCornerShape(100))
                         .background(Color(0xFFc01c3c))
                         .clickable {
+                            println( " asasasas")
+                            capturePhoto(context,cameraController){
+                                onEvent(MainEvent.PhotoTook(it))
+                            }
                         }
                 )
             }

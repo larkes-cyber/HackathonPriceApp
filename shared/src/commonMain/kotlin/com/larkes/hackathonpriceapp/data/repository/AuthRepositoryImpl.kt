@@ -18,7 +18,6 @@ class AuthRepositoryImpl(
             login = authData.email ?: authData.number ?: "",
             password = authData.password
         ))
-        println(token.access.toString() + "  444444444")
         authSettingsDataSource.putToken(TokenEntity(  accessToken = token.access,
             refreshToken = token.refresh))
     }
@@ -47,7 +46,13 @@ class AuthRepositoryImpl(
                 token = token.accessToken
             ))
         }catch (e:Exception){
-            authKtorDataSource.refreshToken(TokenRequest(token = token.refreshToken))
+            val accToken = authKtorDataSource.refreshToken(TokenRequest(token = token.refreshToken))
+            authSettingsDataSource.putToken(
+                TokenEntity(
+                    accessToken = accToken,
+                    refreshToken = token.refreshToken
+                ))
+
         }
 
     }
