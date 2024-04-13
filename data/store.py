@@ -10,7 +10,7 @@ class StoreEntity(SqlAlchemyBase):
     location = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     region = sqlalchemy.Column(sqlalchemy.String, nullable=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    email = sqlalchemy.Column(sqlalchemy.Integer, default="vk@mail.ru")
+    email = sqlalchemy.Column(sqlalchemy.String, default="vk@mail.ru")
 
     def __repr__(self):
         return f'<StoreEntity> {self.name}.\n"{self.email}"'

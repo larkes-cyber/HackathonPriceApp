@@ -1,3 +1,6 @@
+import datetime
+import time
+
 from fastapi import APIRouter, status, Depends
 from app.api_schemes import PassScheme
 from fastapi.exceptions import HTTPException
@@ -37,15 +40,13 @@ async def hello(Authorize: AuthJWT = Depends()):
         Authorize.jwt_required()
 
     except Exception as e:
-        return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                             detail="Invalid Token"
-                             )
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Invalid Token")
 
     return {"message": "Hello World"}
 
 
-@auth_router.post('/signup',
-                  status_code=status.HTTP_201_CREATED
+@auth_router.post('/signup', status_code=status.HTTP_201_CREATED
                   )
 async def signup(user: PassScheme):
     """
@@ -61,13 +62,13 @@ async def signup(user: PassScheme):
     session = db_session.create_session()
 
     if is_user_exist(user.login, session):
-        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                              detail="Пользователь с таким логином уже существует"
                              )
     try:
         new_user = UserManager.signup_user(user.login, user.password, session)
     except Exception:
-        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                              detail="Логин должен быть телефоном или email"
                              )
 
@@ -96,8 +97,8 @@ async def login(pass_data: PassScheme, Authorize: AuthJWT = Depends()):
 
     try:
         user = UserManager.login_user(pass_data.login, pass_data.password, session)
-        access_token = Authorize.create_access_token(subject=user.id)
-        refresh_token = Authorize.create_refresh_token(subject=user.id)
+        access_token = Authorize.create_access_token(subject=user.id, expires_time=datetime.timedelta(days=1))
+        refresh_token = Authorize.create_refresh_token(subject=user.id, expires_time=datetime.timedelta(days=1))
 
         response = {
             "access": access_token,
@@ -107,7 +108,7 @@ async def login(pass_data: PassScheme, Authorize: AuthJWT = Depends()):
         return jsonable_encoder(response)
 
     except Exception:
-        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                              detail="Неправильный Логин или Пароль"
                              )
 
@@ -125,7 +126,7 @@ async def refresh(Authorize: AuthJWT = Depends()):
         Authorize.jwt_refresh_token_required()
 
     except Exception as e:
-        return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                              detail="Please provide a valid refresh token"
                              )
 
@@ -133,4 +134,4 @@ async def refresh(Authorize: AuthJWT = Depends()):
 
     access_token = Authorize.create_access_token(subject=current_user)
 
-    return jsonable_encoder({"access": access_token})
+    return access_token

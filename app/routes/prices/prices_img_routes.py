@@ -47,7 +47,7 @@ async def upload_price_image(file: UploadFile = File(...), Authorize: AuthJWT = 
         Authorize.jwt_required()
 
     except Exception as e:
-        return HTTPException(
+        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Неправильный токен"
         )
@@ -58,24 +58,21 @@ async def upload_price_image(file: UploadFile = File(...), Authorize: AuthJWT = 
 
     user = query_user_by_id(current_user, session=session)
 
-    if user.is_spam:
+    if not user.is_spam:
         # SAVING
         try:
             img_id, img_path = commit_price_image(file.file)
         except Exception:
-            return HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Ошибка при сохранении изображения")
+            raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Ошибка при сохранении изображения")
         finally:
             file.file.close()
         # SCANNING
-        response = {
-            "id": img_id,
-            "data": scan_image(img_path)
-        }
+
+        response = scan_image(img_path)
+        response["id"] = img_id
         return jsonable_encoder(response)
 
-    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
-                         detail="Нет доступа"
-                         )
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Нет доступа")
 
 
 @price_img_router.get('/{price_id}')
@@ -92,4 +89,4 @@ async def price_image(price_id: int):
 
         """
     image = query_price_img(price_id)
-    return jsonable_encoder(image)
+    return FileResponse(image)

@@ -28,7 +28,7 @@ async def hello(Authorize: AuthJWT = Depends()):
         Authorize.jwt_required()
 
     except Exception as e:
-        return HTTPException(
+        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid Token"
         )
@@ -51,7 +51,7 @@ async def create_store(store: StoreScheme, Authorize: AuthJWT = Depends()):
         Authorize.jwt_required()
 
     except Exception as e:
-        return HTTPException(
+        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Неправильный токен"
         )
@@ -74,7 +74,7 @@ async def create_store(store: StoreScheme, Authorize: AuthJWT = Depends()):
 
         return jsonable_encoder(response)
 
-    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                          detail="Вы не можете загрузить магазин"
                          )
 
@@ -101,7 +101,7 @@ async def get_store_by_id(store_id: int):
     store = query_store_by_id(store_id, session)
 
     if store is None:
-        return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                              detail="Данного ценника не существует"
                              )
     response = {"name": store.name,
@@ -124,7 +124,7 @@ async def delete_store(store_id: int, Authorize: AuthJWT = Depends()):
         Authorize.jwt_required()
 
     except Exception as e:
-        return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Token")
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid Token")
 
     current_user = Authorize.get_jwt_subject()
 
@@ -137,7 +137,7 @@ async def delete_store(store_id: int, Authorize: AuthJWT = Depends()):
         store_to_delete = query_price_by_id(store_id, session)
 
         if store_to_delete is None:
-            return HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                                  detail="Магазина не существует"
                                  )
 
@@ -147,6 +147,6 @@ async def delete_store(store_id: int, Authorize: AuthJWT = Depends()):
 
         return store_to_delete
 
-    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                          detail="Вы не можете удалить магазин"
                          )

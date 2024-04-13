@@ -64,11 +64,12 @@ async def place_price(price: PriceScheme, Authorize: AuthJWT = Depends()):
 
     user = query_user_by_id(current_user, session=session)
 
-    if user.is_spam:
+    if not user.is_spam:
         analyse_res = analyse_price(name=price.name, price=price.price,
                                     category=price.category, store=price.store)
 
-        commit_price(category=price.category, price=price.price, name=price.name, store=price.store, creator=user.id, session=session)
+        commit_price(category=price.category, price=price.price, name=price.name, store=price.store, creator=user.id,
+                     in_process=bool(analyse_res["social"]), session=session)
 
         response = {
             "name": price.name,

@@ -57,7 +57,6 @@ class Auth:
         # 1. Validating Login
         reg_type = validate_login(login)
         if reg_type == "email":
-            print(reg_type)
             # 2. Check if User exists
             if is_email_exist(session, login):
                 raise Exception
@@ -102,8 +101,9 @@ class Auth:
         return user
 
 
-def commit_price(category: str, price: int, name: str, store: int, creator: int, session) -> PriceEntity:
-    new_price = PriceEntity(category=category, name=name, price=price, store=store, user=creator)
+def commit_price(category: str, price: int, name: str, store: int,
+                 creator: int, in_process: bool, session) -> PriceEntity:
+    new_price = PriceEntity(category=category, name=name, price=price, store=store, user=creator, in_process=in_process)
     session.add(new_price)
     session.commit()
     return new_price
@@ -137,9 +137,11 @@ def query_price_img(price_id) -> str:
 
 
 def commit_price_image(file) -> [str]:
+    print(1)
     img_id = str(randrange(10 ** 9, 10 ** 10))
     img_path = f"db/images/{img_id}.jpg"
-    contents = file.file.read()
+    print(1)
+    contents = file.read()
     with open(img_path, 'wb') as f:
         f.write(contents)
     file.close()

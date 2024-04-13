@@ -12,6 +12,7 @@ class PriceEntity(SqlAlchemyBase):
     price = sqlalchemy.Column(sqlalchemy.String, default="example@gmail.com")
     store = sqlalchemy.Column(sqlalchemy.Integer, default=0)
     strike = sqlalchemy.Column(sqlalchemy.Boolean, default=0)
+    in_process = sqlalchemy.Column(sqlalchemy.Boolean, default=0)
     spam = sqlalchemy.Column(sqlalchemy.Boolean, default=0)
     user = sqlalchemy.Column(sqlalchemy.Integer, nullable=False)
 

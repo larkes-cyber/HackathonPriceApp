@@ -65,7 +65,7 @@ async def update_user_level(user_id: int, data: UserLevelScheme, Authorize: Auth
                     }
         return jsonable_encoder(response)
 
-    return HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+    raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
                          detail="Нет прав на промоут пользователей"
                          )
 
@@ -100,7 +100,7 @@ async def get_user_by_id(user_id: int, Authorize: AuthJWT = Depends()):
          "join_date": u.join_date}
         return jsonable_encoder(u)
 
-    return HTTPException(
+    raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Нет доступа к пользователям"
     )
@@ -118,7 +118,7 @@ async def list_all_users(Authorize: AuthJWT = Depends()):
     try:
         Authorize.jwt_required()
     except Exception as e:
-        return HTTPException(
+        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid Token"
         )
@@ -134,9 +134,28 @@ async def list_all_users(Authorize: AuthJWT = Depends()):
         users = list(map(lambda u: {"id": u.id, "type": query_user_level(u, session).title, "phone": u.phone, "email": u.email, "join_date": u.join_date}, users))
         return jsonable_encoder(users)
 
-    return HTTPException(
+    raise HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Нет доступа к пользователям"
     )
 
 
+@user_router.get('/admin', status_code=200)
+async def user_is_admin(Authorize: AuthJWT = Depends()):
+    try:
+        Authorize.jwt_required()
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid Token"
+        )
+
+    current_user = Authorize.get_jwt_subject()
+    session = db_session.create_session()
+    user = query_user_by_id(current_user, session)
+
+    if not user.is_admin:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Вы не админ"
+                            )
+    return {"status_code": 200}
