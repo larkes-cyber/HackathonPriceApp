@@ -3,10 +3,15 @@ package com.larkes.hackathonpriceapp.data.remote.source.models
 import kotlinx.serialization.Serializable
 
 @Serializable
-class PriceResponse(
-    val name:String,
+data class AnalyseDto(
+    val res:String,
+    val data:AnalyseBodyDto
+)
+
+@Serializable
+data class AnalyseBodyDto(
     val price:Float,
     val category:String,
     val store:Int,
-    val analyse_result:AnalyseDto
+    val name:String
 )

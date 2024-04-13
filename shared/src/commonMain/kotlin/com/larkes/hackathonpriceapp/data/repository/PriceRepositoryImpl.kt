@@ -39,7 +39,7 @@ class PriceRepositoryImpl(
             performedPrice = PerformedPriceRequest(
                 price = performedPrice.price,
                 category = performedPrice.category,
-                store = performedPrice.store,
+                store = performedPrice.store.toInt(),
                 name = performedPrice.name
             ),
             tokenRequest = TokenRequest(
@@ -48,7 +48,10 @@ class PriceRepositoryImpl(
         )
 
         return PriceResult(
-            approved = response.approved
+            price = response.price,
+            category = response.category,
+            name = response.name,
+            store = response.store
         )
 
     }

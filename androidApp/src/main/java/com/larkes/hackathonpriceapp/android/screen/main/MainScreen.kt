@@ -77,16 +77,16 @@ fun MainScreen(
     CameraView(){
         CoroutineScope(Dispatchers.IO).launch {
             val res = InjectUseCase.useSendPricePhoto.execute(it).data
-            val stores = InjectUseCase.useFetchStores.execute().data
+            val store = InjectUseCase.useFetchStores.execute().data!![0]
 
-
-
-//            InjectUseCase.usePerformPrice.execute(PerformedPrice(
-//                price = res.price,
-//                category = res.
-//            ))
-//            println(res.message.toString() + " nghnhnhnn")
-//            println(res.data.toString() + " nghnhnhnn")
+            val resi = InjectUseCase.usePerformPrice.execute(PerformedPrice(
+                price = res!!.price,
+                category = res.category,
+                store = store.id,
+                name = res.name
+            ))
+            println(resi.message.toString() + " nghnhnhnn")
+            println(resi.data.toString() + " nghnhnhnn")
         }
     }
 

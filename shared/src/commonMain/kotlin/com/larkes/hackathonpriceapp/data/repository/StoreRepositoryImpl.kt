@@ -17,7 +17,10 @@ class StoreRepositoryImpl(
 
         return storeKtorDataSource.fetchStores(tokenRequest = TokenRequest(token.accessToken)).map { Store(
             id = it.id,
-            location = it.location
+            location = it.location,
+            region = it.region,
+            email = it.email,
+            name = it.name
         ) }
     }
 }

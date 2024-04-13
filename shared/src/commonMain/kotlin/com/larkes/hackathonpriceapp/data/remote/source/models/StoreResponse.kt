@@ -5,5 +5,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class StoreResponse(
     val id:String,
-    val location:String
+    val location:String,
+    val email:String,
+    val region:String,
+    val name:String
 )

@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class PerformedPriceRequest(
-    val price:String,
+    val price:Float,
     val category: String,
-    val store:String,
+    val store:Int,
     val name:String
 )
