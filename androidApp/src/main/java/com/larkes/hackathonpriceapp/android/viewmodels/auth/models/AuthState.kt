@@ -6,5 +6,7 @@ data class AuthState(
     val password:String = "",
     val isEmailMethod:Boolean = true,
     val isRegistration:Boolean = true,
-    val passwordHidden:Boolean = true
+    val passwordHidden:Boolean = true,
+    val error:String = "",
+    val isLoading:Boolean = false
 )

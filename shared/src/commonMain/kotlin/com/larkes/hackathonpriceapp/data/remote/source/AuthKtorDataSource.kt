@@ -52,7 +52,7 @@ class AuthKtorDataSource(
         println(response.status.description + " bbbnnbbb")
         println(response.status.isSuccess().toString() + " bnvbnvbnvb")
         if(response.status.isSuccess().not()){
-            val error = response.bodyAsText()
+            val error = response.status.description
             throw Exception(error)
         }
 

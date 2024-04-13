@@ -7,5 +7,6 @@ sealed class AuthEvent{
     data class PasswordChanged(val password:String):AuthEvent()
     data object SwitchLoginMethod:AuthEvent()
     data object PasswordHiddenChanged:AuthEvent()
+    data object Done:AuthEvent()
 
 }

@@ -23,7 +23,7 @@ internal val remoteModule = module {
             }
 
             defaultRequest {
-                url("https://fdc1-62-183-34-186.ngrok-free.app/")
+                url("https://5c79-62-183-34-186.ngrok-free.app/")
             }
         }
     }

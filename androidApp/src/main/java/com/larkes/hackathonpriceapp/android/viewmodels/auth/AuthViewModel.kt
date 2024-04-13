@@ -1,18 +1,22 @@
 package com.larkes.hackathonpriceapp.android.viewmodels.auth
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.models.AuthAction
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.models.AuthEvent
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.models.AuthState
+import com.larkes.hackathonpriceapp.di.InjectUseCase
+import com.larkes.hackathonpriceapp.domain.model.AuthData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor():ViewModel() {
 
-    private val _authAction = MutableStateFlow(AuthAction.OpenAuthScreen)
+    private val _authAction = MutableStateFlow<AuthAction>(AuthAction.OpenAuthScreen)
     val authAction:StateFlow<AuthAction> = _authAction
     private val _authUIState = MutableStateFlow(AuthState())
     val authUIState:StateFlow<AuthState> = _authUIState
@@ -39,9 +43,49 @@ class AuthViewModel @Inject constructor():ViewModel() {
             is AuthEvent.NumberChanged -> {
                 obtainNumberChanged(event.number)
             }
+            is AuthEvent.Done -> {
+                obtainDone()
+
+            }
 
         }
 
+    }
+
+    private fun obtainDone() {
+        viewModelScope.launch {
+            try {
+                _authUIState.value = authUIState.value.copy(isLoading = true)
+                if(authUIState.value.isRegistration){
+                    InjectUseCase.useRegistrationUser.execute(AuthData(
+                        email = authUIState.value.email,
+                        number = authUIState.value.number,
+                        password = authUIState.value.password
+                    ))
+                    InjectUseCase.useLoginUser.execute(
+                        AuthData(
+                            email = authUIState.value.email,
+                            number = authUIState.value.number,
+                            password = authUIState.value.password
+                        )
+                    )
+                }else{
+                    InjectUseCase.useLoginUser.execute(
+                        AuthData(
+                            email = authUIState.value.email,
+                            number = authUIState.value.number,
+                            password = authUIState.value.password
+                        )
+                    )
+                }
+                _authAction.value = AuthAction.OpenSplashScreen
+            }catch (e:Exception){
+                _authUIState.value = authUIState.value.copy(error = e.message ?: "")
+            }finally {
+                _authUIState.value = authUIState.value.copy(isLoading = false)
+            }
+
+        }
     }
 
     private fun obtainNumberChanged(number:String) {

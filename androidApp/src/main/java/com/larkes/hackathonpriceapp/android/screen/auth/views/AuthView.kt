@@ -120,8 +120,11 @@ fun AuthView(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(52.dp),
-                title = if(state.isRegistration.not()) "Войти" else "Зарегистрироваться"
-            )
+                title = if(state.isRegistration.not()) "Войти" else "Зарегистрироваться",
+                enabled = state.isLoading.not()
+            ){
+                onEvent(AuthEvent.Done)
+            }
             Spacer(modifier = Modifier.height(15.dp))
             Box(
                 contentAlignment = Alignment.BottomEnd,
@@ -134,6 +137,14 @@ fun AuthView(
                     modifier = Modifier.clickable {
                         onEvent(AuthEvent.AuthSwitcherClicked)
                     },
+                )
+            }
+            Spacer(modifier = Modifier.height(15.dp))
+            Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+                Text(
+                    text = state.error,
+                    fontSize = 16.sp,
+                    color = Color.Red
                 )
             }
         }
