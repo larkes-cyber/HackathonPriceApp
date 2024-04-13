@@ -25,17 +25,19 @@ class MainViewModel:ObservableObject{
 
     
     func sendPhoto(bytes:[UInt8]){
-        InjectUseCase().useSendPricePhoto.execute(
-            byteArray: KotlinByteArray.from(data: Data(bytes)),
-            completionHandler: {res, err in
-                print(res?.data)
-                print(res?.message)
+        DispatchQueue.main.async {
+            InjectUseCase().useSendPricePhoto.execute(
+                byteArray: KotlinByteArray.from(data: Data(bytes)),
+                completionHandler: {res, err in
+                    print(res?.data)
+                    print(res?.message)
 
-//                self.error = res?.message ?? ""
-//                self.scannedPrice = res?.data
-//                self.isEditSheetPresented = true
-            }
-        )
+    //                self.error = res?.message ?? ""
+    //                self.scannedPrice = res?.data
+    //                self.isEditSheetPresented = true
+                }
+            )
+        }
     }
     
     func onScannedPhotoChanged(price:ScannedPrice){
