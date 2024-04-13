@@ -20,7 +20,6 @@
 		FA64EC9A2BCAECCD000F6AFE /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC992BCAECCD000F6AFE /* CommonTextField.swift */; };
 		FA64EC9C2BCAED08000F6AFE /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC9B2BCAED08000F6AFE /* ActionButton.swift */; };
 		FA64EC9E2BCAED31000F6AFE /* AuthTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */; };
-		FAC285D02BCB1C04001BB83D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285CF2BCB1C04001BB83D /* CameraView.swift */; };
 		FAC285E22BCB28BA001BB83D /* ContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E12BCB28BA001BB83D /* ContentHandler.swift */; };
 		FAC285E42BCB290B001BB83D /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E32BCB290B001BB83D /* CameraManager.swift */; };
 		FAC285E62BCB292D001BB83D /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E52BCB292D001BB83D /* CameraError.swift */; };
@@ -47,7 +46,6 @@
 		FA64EC992BCAECCD000F6AFE /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		FA64EC9B2BCAED08000F6AFE /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTabButton.swift; sourceTree = "<group>"; };
-		FAC285CF2BCB1C04001BB83D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = ../../../../../../../Documents/CameraView.swift; sourceTree = "<group>"; };
 		FAC285E12BCB28BA001BB83D /* ContentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHandler.swift; sourceTree = "<group>"; };
 		FAC285E32BCB290B001BB83D /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		FAC285E52BCB292D001BB83D /* CameraError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		FAC285CE2BCB1BF6001BB83D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FAC285CF2BCB1C04001BB83D /* CameraView.swift */,
 				FAC285E12BCB28BA001BB83D /* ContentHandler.swift */,
 				FAC285E32BCB290B001BB83D /* CameraManager.swift */,
 				FAC285E52BCB292D001BB83D /* CameraError.swift */,
@@ -304,7 +301,6 @@
 				FAC285EC2BCB312A001BB83D /* MainViewModel.swift in Sources */,
 				FA64EC9E2BCAED31000F6AFE /* AuthTabButton.swift in Sources */,
 				FA64EC9C2BCAED08000F6AFE /* ActionButton.swift in Sources */,
-				FAC285D02BCB1C04001BB83D /* CameraView.swift in Sources */,
 				FAC285EE2BCB370C001BB83D /* EditBottomSheet.swift in Sources */,
 				FAC285E82BCB2940001BB83D /* FrameManager.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
