@@ -32,9 +32,9 @@ class MainViewModel:ObservableObject{
                     print(res?.data)
                     print(res?.message)
 
-    //                self.error = res?.message ?? ""
-    //                self.scannedPrice = res?.data
-    //                self.isEditSheetPresented = true
+                    self.error = res?.message ?? ""
+                    self.scannedPrice = res?.data
+                    self.isEditSheetPresented = true
                 }
             )
         }
