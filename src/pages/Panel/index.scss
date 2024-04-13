@@ -27,6 +27,14 @@
             flex-direction: column;
             align-items: center;
             justify-content: space-evenly;
+            cursor: pointer;
+            display: flex;
+            // flex-direction: row;
+            // align-items: center;
+            background: $lec-bg;
+            // padding: 0.5em 1em;
+            box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.05);
+            border-radius: $border-radius-1;
             p {
                 width: 100%;
                 text-align: center;
