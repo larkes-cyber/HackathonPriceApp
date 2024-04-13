@@ -15,19 +15,17 @@ class AuthRepositoryImpl(
 ):AuthRepository {
     override suspend fun performLogin(authData: AuthData) {
         val token = authKtorDataSource.sendLogin(AuthRequest(
-            email = authData.email,
-            number = authData.number,
+            login = authData.email ?: authData.number ?: "",
             password = authData.password
         ))
-        authSettingsDataSource.putToken(TokenEntity(  accessToken = token.accessToken,
-            refreshToken = token.refreshToken))
+        authSettingsDataSource.putToken(TokenEntity(  accessToken = token.access,
+            refreshToken = token.refresh))
     }
 
     override suspend fun performRegistration(authData: AuthData) {
         authKtorDataSource.sendRegistration(
             AuthRequest(
-                email = authData.email,
-                number = authData.number,
+                login = authData.email ?: authData.number ?: "",
                 password = authData.password
             )
         )

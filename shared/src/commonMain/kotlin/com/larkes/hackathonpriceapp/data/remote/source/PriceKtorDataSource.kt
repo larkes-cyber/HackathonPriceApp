@@ -25,26 +25,31 @@ class PriceKtorDataSource(
 ) {
 
     suspend fun sendImage(byteArray: ByteArray, tokenRequest: TokenRequest): ScannedPriceResponse {
-        val response = httpClient.post(SEND_IMAGE){
-
+        val response = httpClient.post(){
+            url{
+                path(SEND_IMAGE)
+            }
             setBody(
-                MultiPartFormDataContent(
 
+
+
+                MultiPartFormDataContent(
                     formData {
-                        header("Authorization", "Bearer ${tokenRequest.accessToken}")
-                        append("description", "user_image")
-                        append("image", byteArray, Headers.build {
+                        header("Authorization", "Bearer ${tokenRequest.token}")
+                        append("file", byteArray, Headers.build {
                             append(HttpHeaders.ContentType, "image/png")
                             append(HttpHeaders.ContentDisposition, "filename=\"ktor_logo.png\"")
                         })
                     },
                     boundary = "WebAppBoundary"
                 )
+
             )
+
         }
 
         if(response.status.isSuccess().not()){
-            val error = response.bodyAsText()
+            val error = response.status.description
             throw Exception(error)
         }
 
@@ -57,7 +62,7 @@ class PriceKtorDataSource(
             url {
                 path(SEND_PERFORMED_PRICE)
                 headers {
-                    header("Authorization", "Bearer ${tokenRequest.accessToken}")
+                    header("Authorization", "Bearer ${tokenRequest.token}")
                     setBody(performedPrice)
                 }
             }
@@ -71,8 +76,8 @@ class PriceKtorDataSource(
 
     companion object{
 
-        private const val SEND_IMAGE = "price/upload_image"
-        private const val SEND_PERFORMED_PRICE = "price/send_performed/price"
+        private const val SEND_IMAGE = "api/prices/images/upload_image/"
+        private const val SEND_PERFORMED_PRICE = "api/prices/place_price"
 
     }
 }

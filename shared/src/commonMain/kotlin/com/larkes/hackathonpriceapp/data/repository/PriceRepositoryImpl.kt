@@ -39,7 +39,7 @@ class PriceRepositoryImpl(
             performedPrice = PerformedPriceRequest(
                 price = performedPrice.price,
                 category = performedPrice.category,
-                location = performedPrice.location,
+                store = performedPrice.store,
                 name = performedPrice.name
             ),
             tokenRequest = TokenRequest(

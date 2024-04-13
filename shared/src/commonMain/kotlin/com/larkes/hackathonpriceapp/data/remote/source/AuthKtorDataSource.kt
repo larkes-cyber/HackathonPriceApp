@@ -6,6 +6,8 @@ import com.larkes.hackathonpriceapp.data.remote.source.models.TokenResponse
 import com.larkes.hackathonpriceapp.domain.model.AuthData
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
+import io.ktor.client.request.accept
+import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.headers
 import io.ktor.client.request.post
@@ -29,7 +31,7 @@ class AuthKtorDataSource(
             }
         }
         if(response.status.isSuccess().not()){
-            val error = response.bodyAsText()
+            val error = response.status.description
             throw Exception(error)
         }
 
@@ -37,13 +39,18 @@ class AuthKtorDataSource(
     }
 
     suspend fun sendRegistration(authRequest: AuthRequest){
+        println(authRequest.toString() + " bbbnnbbb")
+
         val response =  httpClient.post{
             contentType(ContentType.Application.Json)
+            accept(ContentType.Application.Json)
             url {
                 path(REGISTRATION)
                 setBody(authRequest)
             }
         }
+        println(response.status.description + " bbbnnbbb")
+        println(response.status.isSuccess().toString() + " bnvbnvbnvb")
         if(response.status.isSuccess().not()){
             val error = response.bodyAsText()
             throw Exception(error)
@@ -54,10 +61,10 @@ class AuthKtorDataSource(
     suspend fun checkAccessToken(tokenRequest: TokenRequest){
         val response =  httpClient.post{
             contentType(ContentType.Application.Json)
+            headers {
+                header("Authorization", "Bearer ${tokenRequest.token}")
+            }
             url {
-                headers {
-                    header("Authorization", "Bearer ${tokenRequest.accessToken}")
-                }
                 path(CHECK_TOKEN)
             }
         }
@@ -69,11 +76,11 @@ class AuthKtorDataSource(
     }
 
     suspend fun refreshToken(tokenRequest: TokenRequest){
-        val response =  httpClient.post{
+        val response =  httpClient.get{
             contentType(ContentType.Application.Json)
             url {
                 headers {
-                    header("Authorization", "Bearer ${tokenRequest.refreshToken}")
+                    header("Authorization", "Bearer ${tokenRequest.token}")
                 }
                 path(REFRESH_TOKEN)
             }
@@ -87,9 +94,9 @@ class AuthKtorDataSource(
 
     companion object{
 
-        private const val CHECK_TOKEN = "api/auth/signup"
+        private const val CHECK_TOKEN = "api/auth"
         private const val REFRESH_TOKEN = "api/auth/refresh"
-        private const val REGISTRATION = "auth/registration"
+        private const val REGISTRATION = "api/auth/signup"
         private const val LOGIN = "api/auth/login"
 
     }

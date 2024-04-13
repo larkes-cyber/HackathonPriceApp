@@ -6,6 +6,6 @@ import kotlinx.serialization.Serializable
 class PerformedPriceRequest(
     val price:String,
     val category: String,
-    val location:String,
+    val store:String,
     val name:String
 )

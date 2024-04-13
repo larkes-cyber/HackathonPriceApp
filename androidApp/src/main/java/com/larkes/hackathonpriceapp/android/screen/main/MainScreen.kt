@@ -30,6 +30,7 @@ import com.larkes.hackathonpriceapp.android.navigation.Screen
 import com.larkes.hackathonpriceapp.android.screen.main.views.CameraView
 import com.larkes.hackathonpriceapp.di.InjectUseCase
 import com.larkes.hackathonpriceapp.domain.model.AuthData
+import com.larkes.hackathonpriceapp.domain.model.PerformedPrice
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -46,7 +47,16 @@ fun MainScreen(
 
     LaunchedEffect(Unit){
         CoroutineScope(Dispatchers.IO).launch {
-            println(InjectUseCase.useLoginUser.execute(AuthData("","","")).message + "dfsdfsdfsdf")
+
+            println(InjectUseCase.useLoginUser.execute(AuthData(
+                "play@gmail.com",
+                null,
+                "123456789"
+            )).data + "dfsdfsdfsdf")
+
+            val stores = InjectUseCase.useFetchStores.execute()
+            println(stores.data.toString() + " lkllkkkk")
+            println(stores.message.toString() + " lkllkkkk")
         }
     }
 
@@ -65,7 +75,19 @@ fun MainScreen(
     }
 
     CameraView(){
-        println(it.toString() + " fbcvbcvcv")
+        CoroutineScope(Dispatchers.IO).launch {
+            val res = InjectUseCase.useSendPricePhoto.execute(it).data
+            val stores = InjectUseCase.useFetchStores.execute().data
+
+
+
+//            InjectUseCase.usePerformPrice.execute(PerformedPrice(
+//                price = res.price,
+//                category = res.
+//            ))
+//            println(res.message.toString() + " nghnhnhnn")
+//            println(res.data.toString() + " nghnhnhnn")
+        }
     }
 
 
