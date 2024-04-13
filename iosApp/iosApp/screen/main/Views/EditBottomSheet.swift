@@ -30,7 +30,8 @@ struct EditBottomSheet: View {
                    }
                 }
                .pickerStyle(.menu)
-               .onChange(of: selection){tag in 
+               .onChange(of: selection){tag in
+                   print(tag)
                    onStoreSelected(tag!)
                }
                 
