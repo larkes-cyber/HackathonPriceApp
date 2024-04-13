@@ -4,10 +4,9 @@ import shared
 
 struct ContentView: View {
 
-    let rep = InjectRepositories().testRepository.test()
     
 	var body: some View {
-        Text(rep)
+        SplashScreen()
 	}
 }
 

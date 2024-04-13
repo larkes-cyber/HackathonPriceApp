@@ -8,8 +8,13 @@ class UseLoginUser(
     private val authRepository: AuthRepository
 ) {
 
-    suspend fun execute(authData:AuthData){
-        authRepository.performLogin(authData)
+    suspend fun execute(authData:AuthData):Resource<String>{
+        return try {
+            authRepository.performLogin(authData)
+            Resource.Success("")
+        }catch (e:Exception){
+            Resource.Error(e.message ?: "")
+        }
     }
 
 }

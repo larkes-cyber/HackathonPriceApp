@@ -92,7 +92,7 @@ class MainViewModel @Inject constructor():ViewModel() {
     private fun obtainPhotoTook(bitmap:Bitmap) {
         viewModelScope.launch {
             _mainAction.value = MainAction.OpenEditPriceSheet
-            _mainUIState.value = mainUIState.value.copy(isLoading = true)
+            _mainUIState.value = mainUIState.value.copy(bitmap = bitmap, isLoading = true)
             val bytes = bitmapToByteArray(bitmap)
             val res = InjectUseCase.useSendPricePhoto.execute(bytes)
             _mainUIState.value = mainUIState.value.copy(error = res.message ?: "", isLoading = false, scannedPrice = res.data)
