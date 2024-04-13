@@ -29,9 +29,11 @@ class MainViewModel:ObservableObject{
             byteArray: KotlinByteArray.from(data: Data(bytes)),
             completionHandler: {res, err in
                 print(res?.data)
-                self.error = res?.message ?? ""
-                self.scannedPrice = res?.data
-                self.isEditSheetPresented = true
+                print(res?.message)
+
+//                self.error = res?.message ?? ""
+//                self.scannedPrice = res?.data
+//                self.isEditSheetPresented = true
             }
         )
     }
