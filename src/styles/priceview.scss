@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
     width: calc(100% - 4em);
-    .lectureViewContainer {
+    .priceViewContainer {
         width: 100%;
         .topBarWrapper {
             margin-bottom: 20px;
@@ -62,9 +62,21 @@
             margin-top: 1em;
             cursor: pointer;
         }
-        .remove {
+        .spam {
             border: 2px solid $red;
             background: $red;
+            color: $white;
+            justify-content: center;
+            padding: 0.4em 0;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 1em;
+            cursor: pointer;
+        }
+        .message {
+            border: 2px solid $bright;
+            background: $bright;
             color: $white;
             justify-content: center;
             padding: 0.4em 0;

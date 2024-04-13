@@ -3,7 +3,7 @@ import "./index.scss"
 import { useNavigate } from "react-router-dom";
 import server_url from "../../site";
 
-function LoginPage({setCookie}) {
+function LoginPage({setCookie, setCookieR}) {
 
     const to = useNavigate()
 
@@ -29,6 +29,7 @@ function LoginPage({setCookie}) {
                     console.log(data);
                     if ('access' in data) {
                         setCookie(data.access);
+                        setCookieR(data.refresh);
                         to('/');
                         setMes("");
                     } else {

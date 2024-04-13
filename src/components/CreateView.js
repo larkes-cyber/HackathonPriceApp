@@ -10,7 +10,6 @@ import "../styles/createview.scss"
 import FileUI from "./FileUI";
 import FileLecture from "./PriceUpload";
 import { useParams } from 'react-router-dom';
-
 function CreateView({add_lecture, nav, lectures}) {
 
     const[isLoading, setLoading] = useState(false)

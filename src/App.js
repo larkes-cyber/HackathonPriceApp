@@ -14,6 +14,7 @@ import LoginPage from './pages/Login';
 import StoresPage from './pages/Stores';
 import UsersPage from './pages/Users';
 import Panel from './pages/Panel';
+import site from './site';
 
 function useStoredState(key, defaultValue) {
   // 👇 Load stored state into regular react component state
@@ -45,15 +46,30 @@ function useStoredState(key, defaultValue) {
 function App() {
 
   const [cookie, setCookie] = useStoredState('cookie', "")
+  const [cookieR, setCookieR] = useStoredState('cookieR', "")
+
+  function refresh() {
+      fetch(site+'auth/refresh', {method: "get", 
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      }
+    }
+  )
+  }
+
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Panel cookie={cookie} setCookie={setCookie}/>}/>
-        <Route path='/prices' element={<PricesPage cookie={cookie} setCookie={setCookie}/>}/>
-        <Route path='/stores' element={<StoresPage cookie={cookie}/>}/>
-        <Route path='/login' element={<LoginPage setCookie={setCookie}/>}/>
-        <Route path='/signup' element={<SignUpPage setCookie={setCookie}/>}/>
-        <Route path='/users' element={<UsersPage/>}/>
+        <Route path='/' element={<Panel cookie={cookie} setCookie={setCookie} cookieR={cookieR}/>}/>
+        <Route path='/prices' element={<PricesPage cookie={cookie} setCookie={setCookie} cookieR={cookieR}/>}/>
+        <Route path='/stores' element={<StoresPage cookie={cookie} setCookie={setCookie} cookieR/>}/>
+        <Route path='/create_store' element={<StoresPage is_create={true} cookie={cookie} setCookie={setCookie} cookieR/>}/>
+        <Route path='/login' element={<LoginPage setCookie={setCookie} setCookieR={setCookieR}/>}/>
+        <Route path='/signup' element={<SignUpPage setCookie={setCookie} setCookieR={setCookieR}/>}/>
+        <Route path='/users' element={<UsersPage cookie={cookie} setCookie={setCookie} cookieR={cookieR} is_setting={false}/>}/>
+        <Route path='/users_setting' element={<UsersPage cookie={cookie} setCookie={setCookie} cookieR={cookieR} is_setting={true}/>}/>
       </Routes>
     </div>
   );

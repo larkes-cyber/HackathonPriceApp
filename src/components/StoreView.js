@@ -15,7 +15,7 @@ import FilePrice from "./PriceUpload";
 import { useParams } from "react-router-dom";
 import ContentLoader from "react-content-loader";
 
-function PriceView({ prices, nav, id, setPrices, setId}) {
+function StoreView({ prices, nav, id, setPrices, setId}) {
   let price = prices.filter(v=>v.id===id)[0];
   console.log(price)
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
@@ -41,21 +41,6 @@ function PriceView({ prices, nav, id, setPrices, setId}) {
       <rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" />
     </ContentLoader>
   );
-  useEffect(() => {
-    fetch(site_url + "prices/images/" + id, {
-      method: "GET",
-      headers: {
-        Accept: "image/png",
-        "ngrok-skip-browser-warning": "1",
-        "Access-Control-Allow-Origin": "*",
-      },
-    })
-      .then((res) => res.blob())
-      .then((blob) => {
-        setImg(<img alt="" src={URL.createObjectURL(blob)} />);
-      })
-      .catch((err) => console.error(err));
-  }, [id]);
 
   console.log(price);
   return (
@@ -95,16 +80,9 @@ function PriceView({ prices, nav, id, setPrices, setId}) {
             {/* <a download={price.title+".pdf"}href={site_url+"get_pdf?id="+price.data.id} className="button document">PDF</a> */}
           </div>
         </div>
-        <div>{price.in_process ? "В работе.." : "Разрешено"}</div>
-        <div onClick={() => {}} className="message button">
-          Сообщить в органы
-        </div>
-        <div onClick={() => {}} className="spam remove button">
-          Сообщить о спаме
-        </div>
       </div>
     </div>
   );
 }
 
-export default PriceView;
+export default StoreView;

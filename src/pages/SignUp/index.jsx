@@ -3,7 +3,7 @@ import "./index.scss"
 import { useNavigate } from "react-router-dom";
 import server_url from "../../site";
 
-function SignUpPage({setCookie}) {
+function SignUpPage({setCookie, setCookieR}) {
 
     const to = useNavigate()
 
@@ -45,6 +45,7 @@ function SignUpPage({setCookie}) {
                             console.log(data);
                             if ('access' in data) {
                                 setCookie(data.access);
+                                setCookieR(data.refresh);
                                 to('/');
                                 setMes("");
                             } else {

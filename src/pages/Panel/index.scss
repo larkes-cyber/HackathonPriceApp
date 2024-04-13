@@ -1,0 +1,42 @@
+@import "../../styles/variables.scss";
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    padding: 0em 2em;
+    .links {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        a {
+            text-decoration: none;
+            color: black;
+            height: 50%;
+            font-weight: bold;
+            width: fit-content;
+            border: 2px solid $bright;
+            margin: 1em;
+            border-radius: $border-radius-1;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            p {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        @media (max-width: 800px) {
+            flex-direction: column;
+            a {
+                width: 100%;
+            }
+        }
+    }
+}
