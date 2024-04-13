@@ -32,7 +32,7 @@ struct EditBottomSheet: View {
                .pickerStyle(.menu)
                .onChange(of: selection){tag in
                    print(tag)
-                   onStoreSelected(tag!)
+                  // onStoreSelected(tag!)
                }
                 
                 CommonTextField(hint: String(scannedPrice?.name ?? ""), onValueChanged: {name in
