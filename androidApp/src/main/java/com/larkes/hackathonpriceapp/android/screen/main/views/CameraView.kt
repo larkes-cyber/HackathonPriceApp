@@ -43,66 +43,28 @@ fun CameraView(
     val lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
     val cameraController: LifecycleCameraController = remember { LifecycleCameraController(context) }
 
-    Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                text = { Text(text = "Take photo") },
-                onClick = {
-                    capturePhoto(context, cameraController){
-                        onSuccess(bitmapToByteArray(it))
-                    }
-                },
-                icon = { Icon(imageVector = Icons.Default.Notifications, contentDescription = "Camera capture icon") }
-            )
-        }
-    ) { paddingValues: PaddingValues ->
-
-        Box(modifier = Modifier.fillMaxSize()) {
-            AndroidView(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                factory = { context ->
-                    PreviewView(context).apply {
-                        layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-                        implementationMode = PreviewView.ImplementationMode.COMPATIBLE
-                        scaleType = PreviewView.ScaleType.FILL_START
-                    }.also { previewView ->
-                        previewView.controller = cameraController
-                        cameraController.bindToLifecycle(lifecycleOwner)
-                    }
+    Box(modifier = Modifier.fillMaxSize()) {
+        AndroidView(
+            modifier = Modifier
+                .fillMaxSize(),
+            factory = { context ->
+                PreviewView(context).apply {
+                    layoutParams = LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+                    implementationMode = PreviewView.ImplementationMode.COMPATIBLE
+                    scaleType = PreviewView.ScaleType.FILL_START
+                }.also { previewView ->
+                    previewView.controller = cameraController
+                    cameraController.bindToLifecycle(lifecycleOwner)
                 }
-            )
-        }
+            }
+        )
     }
 
 
 
-
 }
 
-fun capturePhoto(
-    context: Context,
-    cameraController: LifecycleCameraController,
-    onPhotoCaptured: (Bitmap) -> Unit
-) {
-    val mainExecutor: Executor = ContextCompat.getMainExecutor(context)
 
-    cameraController.takePicture(mainExecutor, object : ImageCapture.OnImageCapturedCallback() {
-        override fun onCaptureSuccess(image: ImageProxy) {
-            val correctedBitmap: Bitmap = image
-                .toBitmap()
-                .rotateBitmap(image.imageInfo.rotationDegrees)
-
-            onPhotoCaptured(correctedBitmap)
-            image.close()
-        }
-
-        override fun onError(exception: ImageCaptureException) {
-        }
-    })
-}
 
 fun Bitmap.rotateBitmap(rotationDegrees: Int): Bitmap {
     val matrix = Matrix().apply {

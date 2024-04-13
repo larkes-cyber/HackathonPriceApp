@@ -55,9 +55,9 @@ class AuthViewModel @Inject constructor():ViewModel() {
     private fun obtainDone() {
         viewModelScope.launch {
             try {
-                _authUIState.value = authUIState.value.copy(isLoading = true)
+                _authUIState.value = authUIState.value.copy(isLoading = true, error = "")
                 if(authUIState.value.isRegistration){
-                    InjectUseCase.useRegistrationUser.execute(AuthData(
+                   InjectUseCase.useRegistrationUser.execute(AuthData(
                         email = authUIState.value.email,
                         number = authUIState.value.number,
                         password = authUIState.value.password
@@ -80,7 +80,7 @@ class AuthViewModel @Inject constructor():ViewModel() {
                 }
                 _authAction.value = AuthAction.OpenSplashScreen
             }catch (e:Exception){
-                _authUIState.value = authUIState.value.copy(error = e.message ?: "")
+                _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер")
             }finally {
                 _authUIState.value = authUIState.value.copy(isLoading = false)
             }
@@ -103,8 +103,8 @@ class AuthViewModel @Inject constructor():ViewModel() {
     private fun obtainSwitchLogin() {
         _authUIState.value = authUIState.value.copy(
             isEmailMethod = authUIState.value.isEmailMethod.not(),
-            email = "",
-            number = "",
+            email = null,
+            number = null,
             password = ""
         )
 
@@ -120,8 +120,8 @@ class AuthViewModel @Inject constructor():ViewModel() {
     private fun obtainAuthSwitcherClicked() {
         _authUIState.value = authUIState.value.copy(
             isRegistration = authUIState.value.isRegistration.not(),
-            number = "",
-            email = "",
+            email = null,
+            number = null,
             password = ""
         )
     }

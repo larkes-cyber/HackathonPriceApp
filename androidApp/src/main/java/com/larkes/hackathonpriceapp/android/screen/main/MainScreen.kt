@@ -28,6 +28,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.larkes.hackathonpriceapp.android.navigation.Screen
 import com.larkes.hackathonpriceapp.android.screen.main.views.CameraView
+import com.larkes.hackathonpriceapp.android.screen.main.views.MainView
 import com.larkes.hackathonpriceapp.di.InjectUseCase
 import com.larkes.hackathonpriceapp.domain.model.AuthData
 import com.larkes.hackathonpriceapp.domain.model.PerformedPrice
@@ -42,47 +43,7 @@ fun MainScreen(
     navController:NavController
 ) {
 
-    val permission = Manifest.permission.CAMERA
-    val context = LocalContext.current
+    MainView()
 
-
-    val cameraIsGranted = remember{
-        mutableStateOf<Boolean?>(null)
-    }
-
-    val launcher = rememberLauncherForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        cameraIsGranted.value = isGranted
-    }
-
-    LaunchedEffect(Unit){
-        checkAndRequestCameraPermission(context, permission, launcher)
-    }
-
-    CameraView(){
-
-    }
-
-
-    Text("main")
-    Button(onClick = {
-        navController.navigate(Screen.HistoryScreen.route)
-    }) {
-        Text("click")
-    }
 }
 
-fun checkAndRequestCameraPermission(
-    context: Context,
-    permission: String,
-    launcher: ManagedActivityResultLauncher<String, Boolean>
-) {
-    val permissionCheckResult = ContextCompat.checkSelfPermission(context, permission)
-    if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
-        // Open camera because permission is already granted
-    } else {
-        // Request a permission
-        launcher.launch(permission)
-    }
-}

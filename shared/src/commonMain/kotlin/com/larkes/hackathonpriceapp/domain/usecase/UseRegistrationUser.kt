@@ -8,13 +8,8 @@ class UseRegistrationUser(
     private val authRepository: AuthRepository
 ) {
 
-    suspend fun execute(authData: AuthData):Resource<String>{
-        return try {
-            authRepository.performRegistration(authData)
-            Resource.Success("Success")
-        }catch (e:Exception){
-            Resource.Error(e.message ?: "")
-        }
+    suspend fun execute(authData: AuthData){
+        authRepository.performRegistration(authData)
     }
 
 }
