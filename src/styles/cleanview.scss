@@ -1,0 +1,11 @@
+.right {
+    width: 100%;
+    .cleanview {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 100vh;
+        justify-content: space-around;
+        width: 100%;
+    }
+}

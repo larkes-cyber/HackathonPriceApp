@@ -1,0 +1,154 @@
+@import "./variables.scss";
+.right {
+    // padding-left: 1em;
+    width: calc(100% - 2em);
+    .createViewContainer {
+        width: 100%;
+        .topBarWrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .addTitle {
+                font-weight: 500;
+                font-size: 30px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                // flex: 2;
+                // min-width: 330px
+            }
+            .close {
+                cursor: pointer;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                // flex: 1;
+                img {
+                    height: 24px;
+                }
+            }
+        }
+        .c {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .uploadbutton {
+            border: 2px dashed $black;
+            border-radius: 1em;
+            width: 100%;
+            padding-top: 3em;
+            padding-bottom: 3em;
+            justify-content: center;
+            cursor: pointer;
+            .uploadicon {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+            }
+        }
+        .uploaded {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            img {
+                max-width: 50%;
+                border-radius: 1em;
+                border: 2px solid $black;
+                cursor: pointer;
+                transition: 1s ease all;
+            }
+            // img:hover {
+            //     transition: 1s ease all;
+            //     border-radius: 2em;
+            // }
+            .altimg {
+                width: 100%;
+                height: 10em;
+                border-radius: 1em;
+                border: 2px solid $black;
+                cursor: pointer;
+                display: flex;
+                padding-bottom: 1em;
+                padding-top: 1em;
+                flex-direction: column;
+                .alt {
+                    text-align: center;
+                    width: 100%;
+                    font-size: x-large;
+                    margin-top: auto;
+                    // font-family: $Inconsolata;
+                    margin-bottom: auto;
+                }
+                .filename {
+                    text-align: center;
+                    // font-family: $Inconsolata;
+                    width: 100%;
+                    margin-top: auto;
+                    margin-bottom: auto;
+                }
+            }
+        }
+        .input {
+            display: flex;
+            flex-direction: column;
+            input {
+                margin-top: 0.5em;
+                padding: 1em;
+                font-size: 23px;
+                border-radius: $border-radius-1;
+                border: none;
+                background: $input-inactive;
+            }
+            input:focus {
+                background: $input-active;
+            }
+            margin-top: 1em;
+        }
+        .upload {
+            margin-top: 1em;
+            background: #8D5EF2;
+            color: #fff;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 0.4em 0;
+            border-radius: 10px;
+        }
+        .not {
+            // border: 2px solid #00000010;
+            background: #00000010;
+            cursor: default;
+        }
+        .lecUpload {
+            .lecUpBtn {
+                cursor: pointer;
+                margin-top: 1em;
+                border: 2px solid #8D5EF2;
+                color: $bright;
+                fill: $bright;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                padding: 0.4em 0;
+                border-radius: 10px;
+                appearance: none;
+                margin-bottom: 0.5em;
+            }
+            .lecUpBtn>*:first-child {
+                margin-right: 0.5em;
+            }
+        }
+    }
+    .createViewContainer>* {
+        margin-top: 20px;
+    }
+    .createViewContainer>*:first-child {
+        margin-top: 0px;
+    }
+}

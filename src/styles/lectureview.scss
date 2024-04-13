@@ -1,0 +1,140 @@
+@import "./variables.scss";
+.right {
+    // padding-left: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(100% - 4em);
+    .lectureViewContainer {
+        width: 100%;
+        .topBarWrapper {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .addTitle {
+                font-weight: 500;
+                font-size: 30px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                // flex: 2;
+                // min-width: 330px
+            }
+            .close {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                color: black;
+                // flex: 1;
+                img {
+                    height: 24px;
+                }
+            }
+            .spacer {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        .imgWrapper {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            overflow: hidden;
+            height: 100%;
+            img {
+                background-repeat: no-repeat;
+                border-radius: $border-radius-1;
+                background-position: center;
+                background-size: cover;
+                width: 100%;
+            }
+        }
+        .glosWrapper {
+            border: 2px solid $bright;
+            color: $bright;
+            justify-content: center;
+            padding: 0.4em 0;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 1em;
+            cursor: pointer;
+        }
+        .remove {
+            border: 2px solid $red;
+            background: $red;
+            color: $white;
+            justify-content: center;
+            padding: 0.4em 0;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: row;
+            margin-top: 1em;
+            cursor: pointer;
+        }
+        .upinfo {
+            .up {
+                width: calc(100% - 1em);
+                font-size: 25px;
+            }
+            .input- {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 1em;
+                width: 100%;
+            }
+            .input->*:first-child {
+                margin-bottom: 0.5em;
+                // font-size: 22px;
+            }
+            input {
+                font-size: 25px;
+                border-radius: $border-radius-1;
+                border: 0px solid $light-text;
+                margin-right: 0.5em;
+                width: 100%;
+            }
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            margin: 1em 0em;
+            justify-content: space-between;
+            align-items: center;
+            .document {
+                border: 2px solid $bright;
+                color: $bright;
+                padding: 0.4em 1em;
+                border-radius: 10px;
+                margin-left: 1em;
+            }
+        }
+        textarea {
+            font-size: 25px;
+            border-radius: $border-radius-1;
+            border: none;
+            margin-right: 0.5em;
+            width: calc(100% - 1em);
+            resize: none;
+            height: 15em;
+            padding: 0.5em;
+            background: $input-inactive;
+        }
+        textarea:focus {
+            background: $input-active;
+        }
+        input {
+            padding: 0.5em;
+            border-radius: $border-radius-1;
+            margin-right: 0.5em;
+            width: 10em;
+            font-size: 23px;
+            border: none;
+            background: $input-inactive;
+        }
+        input:focus {
+            background: $input-active;
+        }
+    }
+}

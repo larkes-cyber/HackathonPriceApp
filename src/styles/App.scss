@@ -1,0 +1,49 @@
+.App {
+    display: flex;
+    flex-direction: row;
+    // align-items: center;
+    // justify-content: center;
+    // margin: 1em;
+    width: 100%;
+    .left {
+        padding: 1em;
+        width: calc(100% - 2em);
+        // max-width: 27em;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        .header {
+            height: 42px;
+        }
+    }
+    .hiddenr {
+        right: 0;
+        position: fixed;
+    }
+    .right {
+        padding: 1em;
+        width: 100%;
+        min-height: 100vh;
+    }
+}
+
+@media (max-width:60em) {
+    .left {
+        position: fixed;
+        left: -100vw;
+    }
+    .right {
+        width: 100vw;
+    }
+    .aaal {
+        position: relative;
+        left: unset;
+        width: 100vw;
+        // align-self: center;
+        justify-self: center;
+    }
+    .aaar {
+        position: fixed;
+        left: 100vw;
+    }
+}

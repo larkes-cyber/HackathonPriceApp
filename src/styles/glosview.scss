@@ -1,0 +1,65 @@
+@import "./variables.scss";
+.container {
+    // max-width: 40em;
+    width: 100%;
+    .topBarWrapper {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        .addTitle {
+            font-weight: 500;
+            font-size: 30px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            // flex: 2;
+            // min-width: 330px
+        }
+        .close {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            cursor: pointer;
+            img {
+                height: 24px;
+            }
+        }
+        .spacer {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .dictView {
+        display: flex;
+        flex-direction: column;
+        .glos {
+            cursor: pointer;
+            padding: 1em;
+            border-radius: $border-radius-1;
+            background: $white;
+            .termin {
+                display: flex;
+                flex-direction: column;
+            }
+            .termin>:first-child {
+                // font-weight: 600;
+            }
+            .termin>:last-child {
+                margin-top: 1em;
+                font-size: 20px;
+            }
+            .t {
+                font-size: 30px;
+            }
+        }
+    }
+    .dictView>* {
+        margin-top: 6px;
+    }
+    .dictView>*:first-child {
+        margin-top: 0;
+    }
+}

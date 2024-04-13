@@ -1,0 +1,52 @@
+@import "./variables.scss";
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@100;300;400;500;600;700;800;900&display=swap');
+#root {
+    background: $main-bg;
+    color: $main-text;
+    font-size: 20px;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: 'Onest', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.light-text {
+    color: $light-text;
+}
+
+.head {
+    font-weight: 500;
+    font-size: 36px;
+}
+
+.button {
+    font-size: 25px;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+input:focus {
+    border: 1px solid $bright;
+    box-shadow: none;
+    ;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.c {
+    cursor: pointer;
+}

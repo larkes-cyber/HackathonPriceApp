@@ -1,0 +1,45 @@
+@import "./variables.scss";
+.lecWrapper {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: $lec-bg;
+    padding: 0.5em 1em;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.05);
+    border-radius: $border-radius-1;
+    .lecImgWrapper {
+        img {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+        }
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        border-radius: $border-radius-2;
+    }
+    .lecDesc {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 1em;
+        height: 80px;
+        flex-direction: column;
+        .lecTitle {
+            font-weight: 400;
+        }
+    }
+    @media (max-width: 25em) {
+        // flex-direction: column;
+        .lecShort {
+            display: none;
+        }
+        .lecThemeDate {
+            display: none;
+        }
+    }
+}
