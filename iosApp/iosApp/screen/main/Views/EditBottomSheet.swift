@@ -46,8 +46,9 @@ struct EditBottomSheet: View {
                 
                 
                 ActionButton(title: "Подтвердить", action: {
-                    
+                    confirm()
                 })
+                .frame(height: 42)
                 
             
             }
