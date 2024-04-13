@@ -30,7 +30,7 @@ function Stores({stores, changeId, chosen, is_create}) {
 
   // )
   console.log(stores)
-  const lecView = stores.map((val) => <StoreElement id={val.id} changeId={changeId} name={val.name} region={val.region} location={val.location}  />)
+  const lecView = stores.map((val) => <StoreElement id={val.id} changeId={changeId} name={val.name} region={val.region} location={val.location} email={val.email} />)
   //      data={val.data}
   //     />)
 

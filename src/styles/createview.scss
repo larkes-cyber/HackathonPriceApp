@@ -112,7 +112,7 @@
         }
         .upload {
             margin-top: 1em;
-            background: #8D5EF2;
+            background: $bright;
             color: #fff;
             display: flex;
             flex-direction: row;
@@ -129,7 +129,7 @@
             .lecUpBtn {
                 cursor: pointer;
                 margin-top: 1em;
-                border: 2px solid #8D5EF2;
+                border: 2px solid $bright;
                 color: $bright;
                 fill: $bright;
                 display: flex;

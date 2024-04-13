@@ -14,9 +14,9 @@ function StoreElement({id, changeId, location, region, name, email}) {
     
         <div className="lecDesc">
             <div className="lecTitle">{name}</div>
-            <div className="lecShort light-text">{location}</div>
+            <div className="lecShort light-text">{email}</div>
             <div className="lecThemeDate light-text">
-                {region} · {email}
+                {region} · {location}
             </div>
         </div>
     </div>

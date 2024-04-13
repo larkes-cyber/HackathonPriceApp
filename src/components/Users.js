@@ -8,7 +8,7 @@ import UserElement from "../components/UserElement";
 import "../styles/lectures.scss"
 import { useNavigate } from "react-router-dom";
 
-function Users({users, changeId, chosen, is_create}) {
+function Users({users, choose, chosen}) {
 
   const [settings, setSettings] = useState(false);
   const [searchProp, setSearchProp] = useState('')
@@ -17,21 +17,9 @@ function Users({users, changeId, chosen, is_create}) {
   console.log(users)
   let Regions = [...new Set(users.map((value)=>value.region))]
   const [chosenF, setChosenF] = useState(Regions)
-  // const lecView = prices.filter((e)=>chosenF.includes(e.store) && chosenT.includes(e.category) && e.name.includes(searchProp)).map(
-  //   (val) =>
-  //   { 
-  //     id_++;
-  //     console.log("aaaaa")
-  //     return <PriceElement id={id_} changeId={changeId} name={val.name} date={""} category={val.category} price={ val.price } 
-  //      data={val.data}
-  //     />
-      
-  //   }
 
-  // )
-  const lecView = users.map((val) => <UserElement id={val.id} changeId={changeId} name={val.name} region={val.region} location={val.location}  />)
-  //      data={val.data}
-  //     />)
+  const lecView = users.map((val) => <UserElement id={val.id} choose={choose} name={val.name} phone={val.phone} email={val.email} is_admin={val.is_admin}/>)
+ 
 
   return (
     <div className="lcsViewContainer">
@@ -60,7 +48,7 @@ function Users({users, changeId, chosen, is_create}) {
         </div>
       </div>: ""}
       </div>
-      {!is_create ? <div onClick={()=>nav("/create_store")} className="loadButtonWrapper button">
+      {chosen>0 ? <div onClick={()=>nav("/user_setting")} className="loadButtonWrapper button">
         <img src={addIcon}/>
       </div> : ""}
       <div className="lcsContainer">
