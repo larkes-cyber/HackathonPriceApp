@@ -1,4 +1,5 @@
 import uvicorn
+from app.email_notificator import EmailNotificator
 
 
 def main():

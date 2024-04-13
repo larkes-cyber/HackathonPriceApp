@@ -44,6 +44,12 @@ class PassScheme(BaseModel):
     password: str
 
 
+class SignupScheme(BaseModel):
+    email: str
+    telephone: str
+    password: str
+
+
 class IdScheme(BaseModel):
     obj_id: int
 

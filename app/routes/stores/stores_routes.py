@@ -63,7 +63,7 @@ async def create_store(store: StoreScheme, Authorize: AuthJWT = Depends()):
     user = query_user_by_id(current_user, session=session)
 
     if user.is_admin:
-        commit_store(store.name, store.location, store.region, store.email, session=session)
+        commit_store(name=store.name, location=store.location, region=store.region, email=store.email, session=session)
 
         response = {
                     "name": store.name,

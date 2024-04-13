@@ -51,29 +51,58 @@ class Auth:
     def __init__(self, secret):
         self.secret = secret
 
-    def signup_user(self, login: str, password, session) -> User:
-        print("------Registering user: ", login, "------", sep='')
+    # def signup_user(self, login: str, password, session) -> User:
+    #     print("------Registering user: ", login, "------", sep='')
+    #
+    #     # 1. Validating Login
+    #     reg_type = validate_login(login)
+    #     if reg_type == "email":
+    #         # 2. Check if User exists
+    #         if is_email_exist(session, login):
+    #             raise Exception
+    #
+    #         # 3. Register him
+    #         user = User(
+    #             email=login,
+    #             hashed_password=encrypt(password, self.secret)
+    #         )
+    #     elif reg_type == "phone":
+    #         # 2. Check if User exists
+    #         if is_phone_exist(session, login):
+    #             raise Exception
+    #
+    #         # 3. Register him
+    #         user = User(
+    #             phone=login,
+    #             hashed_password=encrypt(password, self.secret)
+    #         )
+    #     else:
+    #         # 2. Error
+    #         raise Exception
+    #
+    #     # 4. Database commit
+    #     session.add(user)
+    #     session.commit()
+    #     print("------User ", login, " registered successfully------", sep='')
+    #
+    #     return user
+
+    def signup_user(self, email: str, tel: str, password, session) -> User:
+        print("------Registering user: ", email, tel, "------", sep='')
 
         # 1. Validating Login
-        reg_type = validate_login(login)
-        if reg_type == "email":
+
+        if validate_login(email) == "email" and validate_login(tel) == "phone":
             # 2. Check if User exists
-            if is_email_exist(session, login):
+            if is_email_exist(session, email):
+                raise Exception
+            if is_phone_exist(session, tel):
                 raise Exception
 
             # 3. Register him
             user = User(
-                email=login,
-                hashed_password=encrypt(password, self.secret)
-            )
-        elif reg_type == "phone":
-            # 2. Check if User exists
-            if is_phone_exist(session, login):
-                raise Exception
-
-            # 3. Register him
-            user = User(
-                phone=login,
+                email=email,
+                phone=tel,
                 hashed_password=encrypt(password, self.secret)
             )
         else:
@@ -83,7 +112,7 @@ class Auth:
         # 4. Database commit
         session.add(user)
         session.commit()
-        print("------User ", login, " registered successfully------", sep='')
+        print("------User ", email, tel, " registered successfully------", sep='')
 
         return user
 

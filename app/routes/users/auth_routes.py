@@ -2,7 +2,7 @@ import datetime
 import time
 
 from fastapi import APIRouter, status, Depends
-from app.api_schemes import PassScheme
+from app.api_schemes import PassScheme, SignupScheme
 from fastapi.exceptions import HTTPException
 from fastapi_jwt_auth2 import AuthJWT
 from fastapi.encoders import jsonable_encoder
@@ -48,12 +48,13 @@ async def hello(Authorize: AuthJWT = Depends()):
 
 @auth_router.post('/signup', status_code=status.HTTP_201_CREATED
                   )
-async def signup(user: PassScheme):
+async def signup(user: SignupScheme):
     """
         ## Create a user
         This requires the following
         ```
-                login:int
+                email: str
+                telephone:str
                 password:str
         ```
 
@@ -61,12 +62,14 @@ async def signup(user: PassScheme):
 
     session = db_session.create_session()
 
-    if is_user_exist(user.login, session):
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
-                             detail="Пользователь с таким логином уже существует"
-                             )
+    if is_user_exist(user.telephone, session):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Пользователь с таким телефоном уже "
+                                                                            "существует")
+    if is_user_exist(user.email, session):
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Пользователь с такой почтой уже "
+                                                                            "существует")
     try:
-        new_user = UserManager.signup_user(user.login, user.password, session)
+        new_user = UserManager.signup_user(user.email, user.telephone, user.password, session)
     except Exception:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST,
                              detail="Логин должен быть телефоном или email"
