@@ -12,12 +12,12 @@ struct CommonTextField: View {
     
     
     @State private var value = ""
-    private let hint:LocalizedStringKey
+    private let hint:String
     private let enabled:Bool
     private let isSecure:Bool
     private let onValueChanged:(String) -> Void
 
-    init(hint: LocalizedStringKey, enabled:Bool = true, isSecure:Bool = false, onValueChanged:@escaping (String) -> Void) {
+    init(hint: String, enabled:Bool = true, isSecure:Bool = false, onValueChanged:@escaping (String) -> Void) {
           self.hint = hint
           self.enabled = enabled
           self.isSecure = isSecure

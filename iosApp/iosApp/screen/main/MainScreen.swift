@@ -10,13 +10,26 @@ import SwiftUI
 
 struct MainScreen: View {
     
-    @State private var isCameraPresented = true
+    @StateObject private var handler = ContentHandler()
+    @ObservedObject private var viewModel = MainViewModel()
+
     
     var body: some View {
         
-        CameraView()
+        FrameView(image: handler.frame){bytes in
+            viewModel.sendPhoto(bytes: bytes)
+        }
+        .edgesIgnoringSafeArea(.all)
+        .sheet(isPresented: $viewModel.isEditSheetPresented){
+        EditBottomSheet(
+            scannedPrice: viewModel.scannedPrice,
+            error: viewModel.error,
+            onPriceChange: {viewModel.onScannedPhotoChanged(price: $0)},
+            stores: viewModel.stores,
+            onStoreSelected: {viewModel.selectStore(store: $0)},
+            confirm: {viewModel.done()})
+        }
     }
-        
 }
 
 #Preview {

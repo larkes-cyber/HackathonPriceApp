@@ -1,9 +1,9 @@
 package com.larkes.hackathonpriceapp.data.remote.source
 
-import com.larkes.hackathonpriceapp.data.remote.source.models.AuthRequest
+import com.larkes.hackathonpriceapp.data.remote.source.models.LoginRequest
+import com.larkes.hackathonpriceapp.data.remote.source.models.RegRequest
 import com.larkes.hackathonpriceapp.data.remote.source.models.TokenRequest
 import com.larkes.hackathonpriceapp.data.remote.source.models.TokenResponse
-import com.larkes.hackathonpriceapp.domain.model.AuthData
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.accept
@@ -22,7 +22,7 @@ class AuthKtorDataSource(
     private val httpClient: HttpClient
 ) {
 
-    suspend fun sendLogin(authRequest: AuthRequest): TokenResponse {
+    suspend fun sendLogin(authRequest: LoginRequest): TokenResponse {
         val response =  httpClient.post{
             contentType(ContentType.Application.Json)
             url {
@@ -38,7 +38,7 @@ class AuthKtorDataSource(
         return response.body()
     }
 
-    suspend fun sendRegistration(authRequest: AuthRequest){
+    suspend fun sendRegistration(authRequest: RegRequest){
         println(authRequest.toString() + " bbbnnbbb")
 
         val response =  httpClient.post{

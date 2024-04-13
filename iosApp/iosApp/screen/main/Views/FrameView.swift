@@ -11,11 +11,12 @@ import SwiftUI
 struct FrameView: View {
     var image: CGImage?
     private let label = Text("Camera feed")
+    let onPhoto:([UInt8]) -> Void
     
     func takePhoto() async {
         var taken_photo = UIImage(cgImage: image!)
         var _bytes = getArrayOfBytesFromImage(imageData:  taken_photo.pngData()! as NSData)
-        print(_bytes)
+        onPhoto(_bytes)
     }
     
 
@@ -79,6 +80,3 @@ func getArrayOfBytesFromImage(imageData:NSData) -> Array<UInt8>
 
 }
 
-#Preview {
-    FrameView()
-}
