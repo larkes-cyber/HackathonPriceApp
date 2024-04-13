@@ -10,8 +10,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -45,20 +45,6 @@ fun MainScreen(
     val permission = Manifest.permission.CAMERA
     val context = LocalContext.current
 
-    LaunchedEffect(Unit){
-        CoroutineScope(Dispatchers.IO).launch {
-
-            println(InjectUseCase.useLoginUser.execute(AuthData(
-                "play@gmail.com",
-                null,
-                "123456789"
-            )).data + "dfsdfsdfsdf")
-
-            val stores = InjectUseCase.useFetchStores.execute()
-            println(stores.data.toString() + " lkllkkkk")
-            println(stores.message.toString() + " lkllkkkk")
-        }
-    }
 
     val cameraIsGranted = remember{
         mutableStateOf<Boolean?>(null)
@@ -75,19 +61,7 @@ fun MainScreen(
     }
 
     CameraView(){
-        CoroutineScope(Dispatchers.IO).launch {
-            val res = InjectUseCase.useSendPricePhoto.execute(it).data
-            val store = InjectUseCase.useFetchStores.execute().data!![0]
 
-            val resi = InjectUseCase.usePerformPrice.execute(PerformedPrice(
-                price = res!!.price,
-                category = res.category,
-                store = store.id,
-                name = res.name
-            ))
-            println(resi.message.toString() + " nghnhnhnn")
-            println(resi.data.toString() + " nghnhnhnn")
-        }
     }
 
 

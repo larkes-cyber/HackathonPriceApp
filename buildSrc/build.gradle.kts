@@ -16,6 +16,7 @@ dependencies{
     implementation(Dependencies.Compose.gradlePlugin)
     implementation(Dependencies.Serialization.gradlePlugin)
     implementation(Dependencies.SqlDelight.gradlePlugin)
+    implementation("com.google.dagger:hilt-android-gradle-plugin:2.44")
 }
 
 kotlin{

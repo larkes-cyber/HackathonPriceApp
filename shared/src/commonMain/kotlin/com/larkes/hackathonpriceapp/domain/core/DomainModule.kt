@@ -1,5 +1,6 @@
 package com.larkes.hackathonpriceapp.domain.core
 
+import com.larkes.hackathonpriceapp.domain.usecase.UseCheckAuth
 import com.larkes.hackathonpriceapp.domain.usecase.UseFetchStores
 import com.larkes.hackathonpriceapp.domain.usecase.UseLoginUser
 import com.larkes.hackathonpriceapp.domain.usecase.UsePerformPrice
@@ -22,6 +23,9 @@ val domainModule = module {
     }
     single {
         UseFetchStores(get())
+    }
+    single {
+        UseCheckAuth(get())
     }
 
 }

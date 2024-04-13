@@ -1,6 +1,7 @@
 package com.larkes.hackathonpriceapp.di
 
 import com.larkes.hackathonpriceapp.domain.repository.TestRepository
+import com.larkes.hackathonpriceapp.domain.usecase.UseCheckAuth
 import com.larkes.hackathonpriceapp.domain.usecase.UseFetchStores
 import com.larkes.hackathonpriceapp.domain.usecase.UseLoginUser
 import com.larkes.hackathonpriceapp.domain.usecase.UsePerformPrice
@@ -16,5 +17,6 @@ object InjectUseCase: KoinComponent {
     val usePerformPrice:UsePerformPrice  = get<UsePerformPrice>()
     val useRegistrationUser:UseRegistrationUser = get<UseRegistrationUser>()
     val useSendPricePhoto:UseSendPricePhoto = get<UseSendPricePhoto>()
+    val useCheckAuth:UseCheckAuth = get<UseCheckAuth>()
 
 }
