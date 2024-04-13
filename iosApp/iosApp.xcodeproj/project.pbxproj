@@ -20,6 +20,8 @@
 		FA64EC9A2BCAECCD000F6AFE /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC992BCAECCD000F6AFE /* CommonTextField.swift */; };
 		FA64EC9C2BCAED08000F6AFE /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC9B2BCAED08000F6AFE /* ActionButton.swift */; };
 		FA64EC9E2BCAED31000F6AFE /* AuthTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */; };
+		FAC285D02BCB1C04001BB83D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285CF2BCB1C04001BB83D /* CameraView.swift */; };
+		FAC285D22BCB2035001BB83D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285D12BCB2035001BB83D /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		FA64EC992BCAECCD000F6AFE /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
 		FA64EC9B2BCAED08000F6AFE /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTabButton.swift; sourceTree = "<group>"; };
+		FAC285CF2BCB1C04001BB83D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = ../../../../../../../Documents/CameraView.swift; sourceTree = "<group>"; };
+		FAC285D12BCB2035001BB83D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		FCB0DEA2CA694C78F967C560 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +147,7 @@
 		FA64EC8B2BCAE458000F6AFE /* main */ = {
 			isa = PBXGroup;
 			children = (
+				FAC285CE2BCB1BF6001BB83D /* Views */,
 				FA62CBA02BCB03F500DDB46D /* MainScreen.swift */,
 			);
 			path = main;
@@ -163,6 +168,15 @@
 				FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		FAC285CE2BCB1BF6001BB83D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FAC285CF2BCB1C04001BB83D /* CameraView.swift */,
+				FAC285D12BCB2035001BB83D /* ImagePicker.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +282,9 @@
 				FA64EC972BCAEAA5000F6AFE /* AuthViewModel.swift in Sources */,
 				FA64EC9E2BCAED31000F6AFE /* AuthTabButton.swift in Sources */,
 				FA64EC9C2BCAED08000F6AFE /* ActionButton.swift in Sources */,
+				FAC285D02BCB1C04001BB83D /* CameraView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				FAC285D22BCB2035001BB83D /* ImagePicker.swift in Sources */,
 				FA64EC932BCAE4D0000F6AFE /* SplashViewModel.swift in Sources */,
 				FA64EC952BCAE783000F6AFE /* AuthScreen.swift in Sources */,
 			);
