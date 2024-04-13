@@ -9,9 +9,14 @@
 import SwiftUI
 
 struct MainScreen: View {
+    
+    @State private var isCameraPresented = true
+    
     var body: some View {
+        
         CameraView()
     }
+        
 }
 
 #Preview {

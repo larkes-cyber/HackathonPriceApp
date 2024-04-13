@@ -21,7 +21,11 @@
 		FA64EC9C2BCAED08000F6AFE /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC9B2BCAED08000F6AFE /* ActionButton.swift */; };
 		FA64EC9E2BCAED31000F6AFE /* AuthTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */; };
 		FAC285D02BCB1C04001BB83D /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285CF2BCB1C04001BB83D /* CameraView.swift */; };
-		FAC285D22BCB2035001BB83D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285D12BCB2035001BB83D /* ImagePicker.swift */; };
+		FAC285E22BCB28BA001BB83D /* ContentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E12BCB28BA001BB83D /* ContentHandler.swift */; };
+		FAC285E42BCB290B001BB83D /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E32BCB290B001BB83D /* CameraManager.swift */; };
+		FAC285E62BCB292D001BB83D /* CameraError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E52BCB292D001BB83D /* CameraError.swift */; };
+		FAC285E82BCB2940001BB83D /* FrameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E72BCB2940001BB83D /* FrameManager.swift */; };
+		FAC285EA2BCB2996001BB83D /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E92BCB2996001BB83D /* FrameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +46,11 @@
 		FA64EC9B2BCAED08000F6AFE /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		FA64EC9D2BCAED31000F6AFE /* AuthTabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTabButton.swift; sourceTree = "<group>"; };
 		FAC285CF2BCB1C04001BB83D /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraView.swift; path = ../../../../../../../Documents/CameraView.swift; sourceTree = "<group>"; };
-		FAC285D12BCB2035001BB83D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FAC285E12BCB28BA001BB83D /* ContentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentHandler.swift; sourceTree = "<group>"; };
+		FAC285E32BCB290B001BB83D /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		FAC285E52BCB292D001BB83D /* CameraError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraError.swift; sourceTree = "<group>"; };
+		FAC285E72BCB2940001BB83D /* FrameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameManager.swift; sourceTree = "<group>"; };
+		FAC285E92BCB2996001BB83D /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		FCB0DEA2CA694C78F967C560 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -174,7 +182,11 @@
 			isa = PBXGroup;
 			children = (
 				FAC285CF2BCB1C04001BB83D /* CameraView.swift */,
-				FAC285D12BCB2035001BB83D /* ImagePicker.swift */,
+				FAC285E12BCB28BA001BB83D /* ContentHandler.swift */,
+				FAC285E32BCB290B001BB83D /* CameraManager.swift */,
+				FAC285E52BCB292D001BB83D /* CameraError.swift */,
+				FAC285E72BCB2940001BB83D /* FrameManager.swift */,
+				FAC285E92BCB2996001BB83D /* FrameView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -275,6 +287,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC285EA2BCB2996001BB83D /* FrameView.swift in Sources */,
+				FAC285E22BCB28BA001BB83D /* ContentHandler.swift in Sources */,
+				FAC285E42BCB290B001BB83D /* CameraManager.swift in Sources */,
 				FA64EC902BCAE4B9000F6AFE /* SplashScreen.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA62CBA12BCB03F500DDB46D /* MainScreen.swift in Sources */,
@@ -283,10 +298,11 @@
 				FA64EC9E2BCAED31000F6AFE /* AuthTabButton.swift in Sources */,
 				FA64EC9C2BCAED08000F6AFE /* ActionButton.swift in Sources */,
 				FAC285D02BCB1C04001BB83D /* CameraView.swift in Sources */,
+				FAC285E82BCB2940001BB83D /* FrameManager.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
-				FAC285D22BCB2035001BB83D /* ImagePicker.swift in Sources */,
 				FA64EC932BCAE4D0000F6AFE /* SplashViewModel.swift in Sources */,
 				FA64EC952BCAE783000F6AFE /* AuthScreen.swift in Sources */,
+				FAC285E62BCB292D001BB83D /* CameraError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
