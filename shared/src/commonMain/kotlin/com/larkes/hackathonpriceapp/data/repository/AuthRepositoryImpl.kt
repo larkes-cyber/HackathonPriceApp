@@ -29,7 +29,7 @@ class AuthRepositoryImpl(
         authKtorDataSource.sendRegistration(
             RegRequest(
                 email = authData.email ?: "",
-                number = authData.number ?: "",
+                telephone = authData.number ?: "",
                 password = authData.password
             )
         )

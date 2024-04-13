@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class RegRequest(
-    val number:String,
+    val telephone:String,
     val email:String,
     val password:String
 )
