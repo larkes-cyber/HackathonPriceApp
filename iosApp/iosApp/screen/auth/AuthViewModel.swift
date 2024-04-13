@@ -56,12 +56,14 @@ class AuthViewModel:ObservableObject{
             InjectUseCase().useRegistrationUser.execute(authData: authData, completionHandler: {res, err in
                 if(res?.data == nil){
                     self.error = "Неверный логин или пароль"
+                    self.isLoading = false
                 }else{
                     InjectUseCase().useLoginUser.execute(authData: authData, completionHandler: {res, err in
                             if(res?.data != nil){
                                 self.isSplashPresented = true
                             }else{
                                 self.error = "Неверный логин или пароль"
+                                self.isLoading = false
                             }
                             self.isLoading = false
                     })
@@ -73,6 +75,7 @@ class AuthViewModel:ObservableObject{
                         self.isSplashPresented = true
                     }else{
                         self.error = "Неверный логин или пароль"
+                        self.isLoading = false
                     }
                     self.isLoading = false
             })
