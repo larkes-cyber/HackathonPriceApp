@@ -4,5 +4,5 @@ data class ScannedPrice(
     val id:String,
     val name:String,
     val category:String,
-    val price:Float
+    val price:String
 )

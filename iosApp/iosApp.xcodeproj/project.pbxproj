@@ -28,6 +28,7 @@
 		FAC285EC2BCB312A001BB83D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285EB2BCB312A001BB83D /* MainViewModel.swift */; };
 		FAC285EE2BCB370C001BB83D /* EditBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285ED2BCB370C001BB83D /* EditBottomSheet.swift */; };
 		FAC285F02BCB6B75001BB83D /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285EF2BCB6B75001BB83D /* SwiftUIView.swift */; };
+		FAC285F22BCB716C001BB83D /* CircularProgressIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285F12BCB716C001BB83D /* CircularProgressIndicator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		FAC285EB2BCB312A001BB83D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FAC285ED2BCB370C001BB83D /* EditBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomSheet.swift; sourceTree = "<group>"; };
 		FAC285EF2BCB6B75001BB83D /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		FAC285F12BCB716C001BB83D /* CircularProgressIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressIndicator.swift; sourceTree = "<group>"; };
 		FCB0DEA2CA694C78F967C560 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,6 +195,7 @@
 				FAC285E92BCB2996001BB83D /* FrameView.swift */,
 				FAC285ED2BCB370C001BB83D /* EditBottomSheet.swift */,
 				FAC285EF2BCB6B75001BB83D /* SwiftUIView.swift */,
+				FAC285F12BCB716C001BB83D /* CircularProgressIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,6 +311,7 @@
 				FAC285EE2BCB370C001BB83D /* EditBottomSheet.swift in Sources */,
 				FAC285E82BCB2940001BB83D /* FrameManager.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				FAC285F22BCB716C001BB83D /* CircularProgressIndicator.swift in Sources */,
 				FA64EC932BCAE4D0000F6AFE /* SplashViewModel.swift in Sources */,
 				FA64EC952BCAE783000F6AFE /* AuthScreen.swift in Sources */,
 				FAC285E62BCB292D001BB83D /* CameraError.swift in Sources */,

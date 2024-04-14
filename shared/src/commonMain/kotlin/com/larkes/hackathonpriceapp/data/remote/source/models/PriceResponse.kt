@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class PriceResponse(
     val name:String,
-    val price:Float,
+    val price:String,
     val category:String,
     val store:Int,
     val analyse_result:AnalyseDto

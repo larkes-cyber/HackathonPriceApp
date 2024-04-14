@@ -14,9 +14,8 @@ struct SplashScreen: View {
     
     var body: some View {
         ZStack{
-            Text(
-                "Hello, World!"
-            )
+            ProgressView()
+                .frame(width: 50, height: 50)
         }
         .fullScreenCover(isPresented: $viewModel.isAuthPresented){
             let _ = print("ddddddd")

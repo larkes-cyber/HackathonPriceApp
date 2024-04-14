@@ -29,6 +29,7 @@ class MainViewModel:ObservableObject{
     func sendPhoto(bytes:[UInt8]){
         DispatchQueue.main.async {
             self.isLoading = true
+            self.isEditSheetPresented = true
             InjectUseCase().useSendPricePhoto.execute(
                 byteArray: KotlinByteArray.from(data: Data(bytes)),
                 completionHandler: {res, err in
@@ -37,7 +38,6 @@ class MainViewModel:ObservableObject{
 
                     self.error = res?.message ?? ""
                     self.scannedPrice = res?.data
-                    self.isEditSheetPresented = true
                     self.isLoading = false
                 }
             )
@@ -56,6 +56,9 @@ class MainViewModel:ObservableObject{
         self.isLoading = true
 
         InjectUseCase().usePerformPrice.execute(performedPrice: PerformedPrice(price: scannedPrice!.price, category: scannedPrice!.category, store: selectedStore?.location ?? "", name: scannedPrice!.name), completionHandler: {res, err in
+            self.scannedPrice = nil
+            self.selectedStore = nil
+            self.error = ""
             self.isEditSheetPresented = false
             self.isSuccessPresented = true
             self.isLoading = false

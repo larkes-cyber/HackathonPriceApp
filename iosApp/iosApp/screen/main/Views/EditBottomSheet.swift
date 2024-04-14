@@ -33,6 +33,10 @@ struct EditBottomSheet: View {
  
     
     var body: some View {
+        if(isLoading){
+            ProgressView()
+                .frame(width: 50, height: 50)
+        }
         if(scannedPrice != nil){
             VStack{
                 
@@ -47,14 +51,16 @@ struct EditBottomSheet: View {
                }
                 
                 let name = scannedPrice?.name ?? ""
+                let price = scannedPrice?.price ?? ""
+                let category = scannedPrice?.category ?? ""
                 
                 CommonTextField(hint: String(name.isEmpty ? "Имя не распознано" : name ), onValueChanged: {name in
                     onPriceChange(ScannedPrice(id: scannedPrice!.id, name: name, category: scannedPrice!.category, price: scannedPrice!.price))
                 })
-                CommonTextField(hint: String(scannedPrice?.price ?? 0), onValueChanged: {price in
-                    onPriceChange(ScannedPrice(id: scannedPrice!.id, name: scannedPrice!.name, category: scannedPrice!.category, price: Float(price)!))
+                CommonTextField(hint: String(price.isEmpty ? "Цена не распознана" : price), onValueChanged: {price in
+                    onPriceChange(ScannedPrice(id: scannedPrice!.id, name: scannedPrice!.name, category: scannedPrice!.category, price: price))
                 })
-                CommonTextField(hint: String(scannedPrice?.category ?? ""), onValueChanged: {category in
+                CommonTextField(hint: String(category.isEmpty ? "Категория не распознана" : category), onValueChanged: {category in
                     onPriceChange(ScannedPrice(id: scannedPrice!.id, name: scannedPrice!.name, category: category, price: scannedPrice!.price))
                 })
                 

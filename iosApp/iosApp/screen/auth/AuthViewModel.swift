@@ -16,7 +16,7 @@ class AuthViewModel:ObservableObject{
     @Published var email = ""
     @Published var password = ""
     @Published var number = ""
-    @Published var passwordHidden = false
+    @Published var passwordHidden = true
     @Published var error = ""
     @Published var isLoading = false
     @Published var isSplashPresented = false

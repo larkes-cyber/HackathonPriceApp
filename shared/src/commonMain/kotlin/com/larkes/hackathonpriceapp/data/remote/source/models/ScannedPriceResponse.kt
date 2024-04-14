@@ -7,6 +7,6 @@ class ScannedPriceResponse(
     val id:String,
     val title:String,
     val category:String,
-    val price:Float,
+    val price:String,
     val socialPrice:Boolean
 )
