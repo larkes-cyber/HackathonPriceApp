@@ -1,17 +1,19 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import addIcon from "../icons/Add.svg";
 import SearchIcon from "../icons/SearchIcon.svg"
 import Settings from "../icons/Settings.svg"
 import Clear from "../icons/Close.svg"
 import PriceElement from "../components/PriceElement";
+import server_url from "../site"
 
 import "../styles/lectures.scss"
+import { useNavigate } from "react-router-dom";
 
-function Prices({prices, changeId, chosen}) {
+function Prices({prices, changeId, chosen, cookie}) {
 
   const [settings, setSettings] = useState(false);
   const [searchProp, setSearchProp] = useState('')
-
+  const to = useNavigate()
   let id_ = -1;
   console.log(prices)
   let Stores = [...new Set(prices.map((value)=>value.store))]
@@ -35,6 +37,36 @@ function Prices({prices, changeId, chosen}) {
   //      data={val.data}
   //     />)
 
+  const [stores, setStores] = useState([]);
+
+  function update_stores() {
+    fetch(server_url + `stores/stores`, {
+      method: "get",
+
+      // 👇 Set headers manually for single file upload
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: "Bearer " + cookie,
+        "Access-Control-Allow-Origin": "*",
+        "ngrok-skip-browser-warning": "1",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setStores(data);
+
+      });
+  }
+
+  useEffect(() => {
+    if (stores.length === 0){
+    update_stores();}
+    if (!cookie) {
+      to("/login");
+    } 
+  });
+
   return (
     <div className="lcsViewContainer">
       <div className="search">
@@ -46,22 +78,22 @@ function Prices({prices, changeId, chosen}) {
       </div>
       {settings ? <div className="filters">
         <div className="fios">
-          <div className="title">Авторы</div>
+          <div className="title">Магазины</div>
           <div className="list">
-          {Stores.map((v, i)=>{return <div className="el">
+          {stores.map((v, i)=>{return <div className="el">
               
-              <input type="checkbox" checked={chosenF.indexOf(Stores[i]) !== -1} onChange={()=>
-              {if (chosenF.indexOf(Stores[i]) !== -1){
+              <input type="checkbox" checked={chosenF.indexOf(stores[i]) !== -1} onChange={()=>
+              {if (chosenF.indexOf(stores[i]) !== -1){
                   setChosenF(chosenF.filter(a => a !== v))
                 } else {
-                  setChosenF([...chosenF, Stores[i]])
+                  setChosenF([...chosenF, stores[i]])
                 }
-            }}/>{[v]}
+            }}/>{[v.name]}
             </div>})}
           </div>
         </div>
         <div className="themes">
-          <div className="title">Темы</div>
+          <div className="title">Категории</div>
           <div className="list">
             {Categories.map((v, i)=>{return <div className="el">
               

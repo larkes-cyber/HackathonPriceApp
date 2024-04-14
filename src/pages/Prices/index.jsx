@@ -39,7 +39,7 @@ function PricesPage({ cookie, setCookie }) {
   return [
     <div className={"left " + (window.location.pathname === "/" ? "aaal" : "")}>
       <Header />
-      <Prices changeId={setChosen} chosen={chosen} prices={prices} />
+      <Prices changeId={setChosen} chosen={chosen} prices={prices} cookie={cookie} />
     </div>,
     <div
       className={"right " + (window.location.pathname === "/" ? "aaar" : "")}

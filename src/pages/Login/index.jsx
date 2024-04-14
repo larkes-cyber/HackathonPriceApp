@@ -49,9 +49,14 @@ function LoginPage({setCookie, setCookieR}) {
         <div className="login-wrapper">
             <h1 className="h1">Авторизация</h1>
             <div className="auth">
-            <input className="cta-btn primary h3" type="phone | email" onChange={(e)=>{setLogin(e.target.value)}} placeholder="Телефон или почта"/>
-            <input  className="cta-btn primary h3"  type="password"   onChange={(e)=>{setPassword(e.target.value)}} placeholder="Пароль"/>
-            <button onClick={() => {handle_auth()}} className="cta-btn  h3">Войти</button>
+            <div className="input">
+            Телефон/почта
+            <input className="" type="phone | email" onChange={(e)=>{setLogin(e.target.value)}} placeholder="Телефон или почта"/>
+            </div>
+            <div className="input">
+            Пароль
+            <input  className="input cta-btn primary h3"  type="password"   onChange={(e)=>{setPassword(e.target.value)}} placeholder="Пароль"/>
+            </div><div onClick={() => {handle_auth()}} className="upload button ">Войти</div>
             <p className="b4" color="red">{mes}</p>
             </div>
             </div></div>

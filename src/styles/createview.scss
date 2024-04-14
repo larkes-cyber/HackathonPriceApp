@@ -1,7 +1,93 @@
 @import "./variables.scss";
+.uploadbutton {
+    border: 2px dashed $black;
+    border-radius: 1em;
+    width: 100%;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    justify-content: center;
+    cursor: pointer;
+    .uploadicon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    input {
+        margin-top: 0.5em;
+        padding: 1em;
+        font-size: 23px;
+        border-radius: $border-radius-1;
+        border: none;
+        background: $input-inactive;
+    }
+    input:focus {
+        background: $input-active;
+    }
+    margin-top: 1em;
+}
+
+.upload {
+    margin-top: 1em;
+    background: $bright;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0.4em 0;
+    border-radius: 10px;
+}
+
 .right {
     // padding-left: 1em;
     width: calc(100% - 2em);
+    .uploaded {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        img {
+            max-width: 50%;
+            border-radius: 1em;
+            border: 2px solid $black;
+            cursor: pointer;
+            transition: 1s ease all;
+        }
+        // img:hover {
+        //     transition: 1s ease all;
+        //     border-radius: 2em;
+        // }
+        .altimg {
+            width: 100%;
+            height: 10em;
+            border-radius: 1em;
+            border: 2px solid $black;
+            cursor: pointer;
+            display: flex;
+            padding-bottom: 1em;
+            padding-top: 1em;
+            flex-direction: column;
+            .alt {
+                text-align: center;
+                width: 100%;
+                font-size: x-large;
+                margin-top: auto;
+                // font-family: $Inconsolata;
+                margin-bottom: auto;
+            }
+            .filename {
+                text-align: center;
+                // font-family: $Inconsolata;
+                width: 100%;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+        }
+    }
     .createViewContainer {
         width: 100%;
         .topBarWrapper {
@@ -36,89 +122,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-        }
-        .uploadbutton {
-            border: 2px dashed $black;
-            border-radius: 1em;
-            width: 100%;
-            padding-top: 3em;
-            padding-bottom: 3em;
-            justify-content: center;
-            cursor: pointer;
-            .uploadicon {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-around;
-            }
-        }
-        .uploaded {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            img {
-                max-width: 50%;
-                border-radius: 1em;
-                border: 2px solid $black;
-                cursor: pointer;
-                transition: 1s ease all;
-            }
-            // img:hover {
-            //     transition: 1s ease all;
-            //     border-radius: 2em;
-            // }
-            .altimg {
-                width: 100%;
-                height: 10em;
-                border-radius: 1em;
-                border: 2px solid $black;
-                cursor: pointer;
-                display: flex;
-                padding-bottom: 1em;
-                padding-top: 1em;
-                flex-direction: column;
-                .alt {
-                    text-align: center;
-                    width: 100%;
-                    font-size: x-large;
-                    margin-top: auto;
-                    // font-family: $Inconsolata;
-                    margin-bottom: auto;
-                }
-                .filename {
-                    text-align: center;
-                    // font-family: $Inconsolata;
-                    width: 100%;
-                    margin-top: auto;
-                    margin-bottom: auto;
-                }
-            }
-        }
-        .input {
-            display: flex;
-            flex-direction: column;
-            input {
-                margin-top: 0.5em;
-                padding: 1em;
-                font-size: 23px;
-                border-radius: $border-radius-1;
-                border: none;
-                background: $input-inactive;
-            }
-            input:focus {
-                background: $input-active;
-            }
-            margin-top: 1em;
-        }
-        .upload {
-            margin-top: 1em;
-            background: $bright;
-            color: #fff;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            padding: 0.4em 0;
-            border-radius: 10px;
         }
         .not {
             // border: 2px solid #00000010;
