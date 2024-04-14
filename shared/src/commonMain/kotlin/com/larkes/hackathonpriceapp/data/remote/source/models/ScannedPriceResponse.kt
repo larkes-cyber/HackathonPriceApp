@@ -5,7 +5,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 class ScannedPriceResponse(
     val id:String,
-    val name:String,
+    val title:String,
     val category:String,
-    val price:Float
+    val price:Float,
+    val socialPrice:Boolean
 )

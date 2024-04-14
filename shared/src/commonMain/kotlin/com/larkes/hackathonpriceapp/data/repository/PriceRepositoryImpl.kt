@@ -25,7 +25,7 @@ class PriceRepositoryImpl(
         )
 
         return ScannedPrice(
-            name = response.name,
+            name = response.title,
             id = response.id,
             category = response.category,
             price = response.price

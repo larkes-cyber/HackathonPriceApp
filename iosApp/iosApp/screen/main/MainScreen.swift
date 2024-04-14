@@ -23,11 +23,12 @@ struct MainScreen: View {
         .sheet(isPresented: $viewModel.isEditSheetPresented){
         EditBottomSheet(
             scannedPrice: viewModel.scannedPrice,
-            error: viewModel.error,
+            isLoading: viewModel.isLoading, error: viewModel.error,
             onPriceChange: {viewModel.onScannedPhotoChanged(price: $0)},
             stores: viewModel.stores,
             onStoreSelected: {viewModel.selectStore(store: $0)},
-            confirm: {viewModel.done()})
+            confirm: {viewModel.done()}, selection: viewModel.stores[0].location
+            )
         }
     }
 }

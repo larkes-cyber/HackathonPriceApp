@@ -12,6 +12,7 @@ class UseSendPricePhoto(
         return try {
             Resource.Success(priceRepository.performPricePhoto(byteArray))
         }catch (e:Exception){
+            println(e.message + " bbcgvbnbnnb")
             Resource.Error(e.message ?: "")
         }
     }

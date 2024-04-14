@@ -16,6 +16,8 @@ class MainViewModel:ObservableObject{
     @Published var scannedPrice:ScannedPrice? = nil
     @Published var stores:[Store] = []
     @Published var selectedStore:Store?
+    @Published var isLoading:Bool = false
+    @Published var isSuccessPresented:Bool = false
 
     init() {
         InjectUseCase().useFetchStores.execute(completionHandler: {res, err in
@@ -26,6 +28,7 @@ class MainViewModel:ObservableObject{
     
     func sendPhoto(bytes:[UInt8]){
         DispatchQueue.main.async {
+            self.isLoading = true
             InjectUseCase().useSendPricePhoto.execute(
                 byteArray: KotlinByteArray.from(data: Data(bytes)),
                 completionHandler: {res, err in
@@ -35,6 +38,7 @@ class MainViewModel:ObservableObject{
                     self.error = res?.message ?? ""
                     self.scannedPrice = res?.data
                     self.isEditSheetPresented = true
+                    self.isLoading = false
                 }
             )
         }
@@ -49,8 +53,11 @@ class MainViewModel:ObservableObject{
     }
     
     func done(){
-        InjectUseCase().usePerformPrice.execute(performedPrice: PerformedPrice(price: scannedPrice!.price, category: scannedPrice!.category, store: selectedStore!.location, name: scannedPrice!.name), completionHandler: {res, err in
+        self.isLoading = true
+
+        InjectUseCase().usePerformPrice.execute(performedPrice: PerformedPrice(price: scannedPrice!.price, category: scannedPrice!.category, store: selectedStore?.location ?? "", name: scannedPrice!.name), completionHandler: {res, err in
                 self.isEditSheetPresented = false
+            self.isLoading = false
         })
     }
     

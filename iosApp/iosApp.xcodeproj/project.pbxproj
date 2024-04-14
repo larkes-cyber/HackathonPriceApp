@@ -27,6 +27,7 @@
 		FAC285EA2BCB2996001BB83D /* FrameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285E92BCB2996001BB83D /* FrameView.swift */; };
 		FAC285EC2BCB312A001BB83D /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285EB2BCB312A001BB83D /* MainViewModel.swift */; };
 		FAC285EE2BCB370C001BB83D /* EditBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285ED2BCB370C001BB83D /* EditBottomSheet.swift */; };
+		FAC285F02BCB6B75001BB83D /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC285EF2BCB6B75001BB83D /* SwiftUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		FAC285E92BCB2996001BB83D /* FrameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameView.swift; sourceTree = "<group>"; };
 		FAC285EB2BCB312A001BB83D /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		FAC285ED2BCB370C001BB83D /* EditBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditBottomSheet.swift; sourceTree = "<group>"; };
+		FAC285EF2BCB6B75001BB83D /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		FCB0DEA2CA694C78F967C560 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +192,7 @@
 				FAC285E72BCB2940001BB83D /* FrameManager.swift */,
 				FAC285E92BCB2996001BB83D /* FrameView.swift */,
 				FAC285ED2BCB370C001BB83D /* EditBottomSheet.swift */,
+				FAC285EF2BCB6B75001BB83D /* SwiftUIView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				FAC285EA2BCB2996001BB83D /* FrameView.swift in Sources */,
 				FAC285E22BCB28BA001BB83D /* ContentHandler.swift in Sources */,
+				FAC285F02BCB6B75001BB83D /* SwiftUIView.swift in Sources */,
 				FAC285E42BCB290B001BB83D /* CameraManager.swift in Sources */,
 				FA64EC902BCAE4B9000F6AFE /* SplashScreen.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
@@ -452,7 +456,7 @@
 					"-framework",
 					"\"shared\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = larkes;
+				PRODUCT_BUNDLE_IDENTIFIER = larkeeeeffff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -482,7 +486,7 @@
 					"-framework",
 					"\"shared\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = larkes;
+				PRODUCT_BUNDLE_IDENTIFIER = larkeeeeffff;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

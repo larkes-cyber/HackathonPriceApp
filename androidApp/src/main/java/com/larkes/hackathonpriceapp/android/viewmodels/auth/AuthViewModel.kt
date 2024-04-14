@@ -47,6 +47,9 @@ class AuthViewModel @Inject constructor():ViewModel() {
                 obtainDone()
 
             }
+            else -> {
+
+            }
 
         }
 
@@ -55,36 +58,42 @@ class AuthViewModel @Inject constructor():ViewModel() {
 
     private fun obtainDone() {
         viewModelScope.launch {
-            try {
+
                 _authUIState.value = authUIState.value.copy(isLoading = true, error = "")
                 if(authUIState.value.isRegistration){
-                   InjectUseCase.useRegistrationUser.execute(AuthData(
+                   val res = InjectUseCase.useRegistrationUser.execute(AuthData(
                         email = authUIState.value.email,
                         number = authUIState.value.number,
                         password = authUIState.value.password
                     ))
-                    InjectUseCase.useLoginUser.execute(
+                    val res2 = InjectUseCase.useLoginUser.execute(
                         AuthData(
                             email = authUIState.value.email,
                             number = authUIState.value.number,
                             password = authUIState.value.password
                         )
                     )
+                    if(res.data == null || res2.data == null){
+                        _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер", isLoading = false)
+                        return@launch
+                    }
+
                 }else{
-                    InjectUseCase.useLoginUser.execute(
+                    val res = InjectUseCase.useLoginUser.execute(
                         AuthData(
                             email = authUIState.value.email,
                             number = authUIState.value.number,
                             password = authUIState.value.password
                         )
                     )
+                    if(res.data == null){
+                        _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер", isLoading = false)
+                        return@launch
+                    }
                 }
-                _authAction.value = AuthAction.OpenSplashScreen
-            }catch (e:Exception){
-                _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер")
-            }finally {
-                _authUIState.value = authUIState.value.copy(isLoading = false)
-            }
+            _authAction.value = AuthAction.OpenSplashScreen
+            _authUIState.value = authUIState.value.copy(isLoading = false)
+
 
         }
     }

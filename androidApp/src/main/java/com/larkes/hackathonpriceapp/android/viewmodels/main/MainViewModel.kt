@@ -85,7 +85,7 @@ class MainViewModel @Inject constructor():ViewModel() {
 
     private fun obtainCloseBottomSheet() {
         _mainAction.value = null
-        _mainUIState.value = MainState()
+        _mainUIState.value = MainState(stores = mainUIState.value.stores)
     }
 
     private fun obtainScannedPriceChanged(scannedPrice: ScannedPrice) {
