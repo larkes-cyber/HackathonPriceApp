@@ -93,7 +93,7 @@ fun EditPriceSheetView(
                     Text(text = viewState.error, color = Color.Red, fontSize = 24.sp)
                 }
             }
-            if (viewState.scannedPrice != null) {
+            if (viewState.scannedPrice != null && viewState.isLoading.not()) {
 
                 ExpandList(
                     list = viewState.stores,

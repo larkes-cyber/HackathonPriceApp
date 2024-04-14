@@ -47,6 +47,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.larkes.hackathonpriceapp.android.navigation.Screen
 import com.larkes.hackathonpriceapp.android.screen.main.views.CameraView
+import com.larkes.hackathonpriceapp.android.screen.main.views.CompletedSheet
 import com.larkes.hackathonpriceapp.android.screen.main.views.EditPriceSheetView
 import com.larkes.hackathonpriceapp.android.screen.main.views.MainView
 import com.larkes.hackathonpriceapp.android.viewmodels.auth.AuthViewModel
@@ -89,6 +90,16 @@ fun MainScreen(
             viewModel.onEvent(it)
         }
     }
+
+        if(viewAction is MainAction.OpenCompletedSheet){
+        CompletedSheet(
+            sheetState = sheetState
+        ){
+            viewModel.onEvent(it)
+        }
+    }
+
+
 
 
 }

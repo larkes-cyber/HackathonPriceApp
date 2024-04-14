@@ -56,7 +56,7 @@ class MainViewModel @Inject constructor():ViewModel() {
     private fun obtainConfirmPrice() {
         viewModelScope.launch {
 
-            _mainAction.value = null
+            _mainUIState.value = mainUIState.value.copy(isLoading = true)
 
             val res = InjectUseCase.usePerformPrice.execute(PerformedPrice(
                 price = mainUIState.value.scannedPrice?.price ?: 0f,
@@ -64,8 +64,11 @@ class MainViewModel @Inject constructor():ViewModel() {
                 name = mainUIState.value.scannedPrice?.name ?: "",
                 store = mainUIState.value.selectedStore?.id ?: "",
                 ))
-            println(res.message + " nbmghjghhgn")
-            println(res.data.toString() + " nbmghjghhgn")
+
+            _mainUIState.value = mainUIState.value.copy(isLoading = false)
+
+            _mainAction.value = MainAction.OpenCompletedSheet
+
 
         }
     }
