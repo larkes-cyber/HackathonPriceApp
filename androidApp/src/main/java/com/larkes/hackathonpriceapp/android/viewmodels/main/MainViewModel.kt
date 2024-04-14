@@ -59,7 +59,7 @@ class MainViewModel @Inject constructor():ViewModel() {
             _mainUIState.value = mainUIState.value.copy(isLoading = true)
 
             val res = InjectUseCase.usePerformPrice.execute(PerformedPrice(
-                price = mainUIState.value.scannedPrice?.price ?: 0f,
+                price = mainUIState.value.scannedPrice?.price ?: "",
                 category = mainUIState.value.scannedPrice?.category ?: "",
                 name = mainUIState.value.scannedPrice?.name ?: "",
                 store = mainUIState.value.selectedStore?.id ?: "",

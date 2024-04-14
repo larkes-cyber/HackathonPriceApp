@@ -135,7 +135,7 @@ fun EditPriceSheetView(
                                 onEvent(
                                     MainEvent.ScannedPriceChanged(
                                         viewState.scannedPrice.copy(
-                                            price = it.toFloat()
+                                            price = it
                                         )
                                     )
                                 )
