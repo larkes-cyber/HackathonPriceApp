@@ -66,31 +66,25 @@ class AuthViewModel @Inject constructor():ViewModel() {
                         number = authUIState.value.number,
                         password = authUIState.value.password
                     ))
-                    val res2 = InjectUseCase.useLoginUser.execute(
-                        AuthData(
-                            email = authUIState.value.email,
-                            number = authUIState.value.number,
-                            password = authUIState.value.password
-                        )
-                    )
-                    if(res.data == null || res2.data == null){
-                        _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер", isLoading = false)
-                        return@launch
-                    }
 
-                }else{
-                    val res = InjectUseCase.useLoginUser.execute(
-                        AuthData(
-                            email = authUIState.value.email,
-                            number = authUIState.value.number,
-                            password = authUIState.value.password
-                        )
-                    )
                     if(res.data == null){
                         _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер", isLoading = false)
                         return@launch
                     }
+
                 }
+
+            val res = InjectUseCase.useLoginUser.execute(
+                AuthData(
+                    email = authUIState.value.email,
+                    number = authUIState.value.number,
+                    password = authUIState.value.password
+                )
+            )
+            if(res.data == null){
+                _authUIState.value = authUIState.value.copy(error = "Неверная почта или номер", isLoading = false)
+                return@launch
+            }
             _authAction.value = AuthAction.OpenSplashScreen
             _authUIState.value = authUIState.value.copy(isLoading = false)
 

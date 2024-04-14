@@ -16,13 +16,14 @@ struct CommonTextField: View {
     private let enabled:Bool
     private let isSecure:Bool
     private let onValueChanged:(String) -> Void
-
-    init(hint: String, enabled:Bool = true, isSecure:Bool = false, onValueChanged:@escaping (String) -> Void, value:String = "") {
+    private let initValue:String
+    
+    init(hint: String, enabled:Bool = true, isSecure:Bool = false, onValueChanged:@escaping (String) -> Void, initValue:String) {
           self.hint = hint
           self.enabled = enabled
           self.isSecure = isSecure
           self.onValueChanged = onValueChanged
-          self.value = value
+        self.initValue = initValue
       }
     
     var body: some View {
@@ -38,7 +39,7 @@ struct CommonTextField: View {
                    }
                    
                    if(isSecure){
-                       SecureField("", text: $value)
+                       SecureField(value, text: $value)
                            .foregroundColor(.gray)
                            .font(.system(size: 16))
                            .autocapitalization(.none)
@@ -48,7 +49,7 @@ struct CommonTextField: View {
                                onValueChanged(newValue)
                            }
                    }else{
-                       TextField("", text: $value)
+                       TextField(value, text: $value)
                            .foregroundColor(.gray)
                            .font(.system(size: 16))
                            .autocapitalization(.none)
@@ -56,6 +57,9 @@ struct CommonTextField: View {
                            .disabled(!self.enabled)
                            .onChange(of: value){ newValue in
                                onValueChanged(newValue)
+                           }
+                           .onAppear(){
+                               self.value = initValue
                            }
                    }
                    

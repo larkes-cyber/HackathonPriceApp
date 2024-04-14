@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -58,124 +59,122 @@ fun EditPriceSheetView(
 
     Box(){
 
-        Image(
-            bitmap = viewState.bitmap!!.asImageBitmap(),
-            contentDescription = "",
-            modifier = Modifier
-                .fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
 
         ModalBottomSheet(
             onDismissRequest = {
                 onEvent(MainEvent.CloseBottomSheet)
             },
             sheetState = sheetState,
-            modifier = Modifier.fillMaxHeight(0.7f),
+            modifier = Modifier.fillMaxHeight(0.9f),
         ) {
+            LazyColumn(){
+                item{
+                    if (viewState.isLoading) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(400.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            CircularProgressIndicator()
 
-            if (viewState.isLoading) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(400.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                  CircularProgressIndicator()
-
-                }
-            }
-
-            if(viewState.error.isNotEmpty()){
-                Box(modifier = Modifier
-                    .fillMaxWidth()
-                    .height(400.dp), contentAlignment = Alignment.Center) {
-                    Text(text = viewState.error, color = Color.Red, fontSize = 24.sp)
-                }
-            }
-            if (viewState.scannedPrice != null && viewState.isLoading.not()) {
-
-                ExpandList(
-                    list = viewState.stores,
-                    selectedStore = viewState.selectedStore
-                ){
-                    onEvent(MainEvent.SelectStore(it))
-                }
-
-                Column(
-                    verticalArrangement = Arrangement.spacedBy(20.dp),
-                    modifier = Modifier
-                        .padding(horizontal = 20.dp)
-                        .padding(top = 15.dp)
-                ) {
-                    PrimaryTextField(
-                        title = "Название",
-                        text = viewState.scannedPrice.name,
-                        modifier = Modifier.fillMaxWidth(),
-                        onChange = {
-                            try {
-                                onEvent(
-                                    MainEvent.ScannedPriceChanged(
-                                        viewState.scannedPrice.copy(
-                                            name = it
-                                        )
-                                    )
-                                )
-                            } catch (e: Exception) {
-
-                            }
                         }
-                    )
-                    PrimaryTextField(
-                        title = "Цена",
-                        modifier = Modifier.fillMaxWidth(),
-                        text = viewState.scannedPrice.price.toString(),
-                        onChange = {
-                            try {
-                                onEvent(
-                                    MainEvent.ScannedPriceChanged(
-                                        viewState.scannedPrice.copy(
-                                            price = it
-                                        )
-                                    )
-                                )
-                            } catch (e: Exception) {
+                    }
 
-                            }
-                        }
-                    )
-                    PrimaryTextField(
-                        title = "Категория",
-                        modifier = Modifier.fillMaxWidth(),
-                        text = viewState.scannedPrice.category,
-                        onChange = {
-                            try {
-                                onEvent(
-                                    MainEvent.ScannedPriceChanged(
-                                        viewState.scannedPrice.copy(
-                                            category = it
-                                        )
-                                    )
-                                )
-                            } catch (e: Exception) {
-
-                            }
-                        }
-                    )
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                Box(modifier = Modifier.padding(horizontal = 20.dp)) {
-                    PrimaryButton(
-                        modifier = Modifier
+                    if(viewState.error.isNotEmpty()){
+                        Box(modifier = Modifier
                             .fillMaxWidth()
-                            .height(52.dp),
-                        title = "Отправить",
-                        enabled = viewState.isLoading.not()
-                    ) {
-                        onEvent(MainEvent.ConfirmPrice)
+                            .height(400.dp), contentAlignment = Alignment.Center) {
+                            Text(text = viewState.error, color = Color.Red, fontSize = 24.sp)
+                        }
                     }
                 }
-                Spacer(modifier = Modifier.height(45.dp))
+                item{
+                    if (viewState.scannedPrice != null && viewState.isLoading.not()) {
+
+                        ExpandList(
+                            list = viewState.stores,
+                            selectedStore = viewState.selectedStore
+                        ){
+                            onEvent(MainEvent.SelectStore(it))
+                        }
+
+                        Column(
+                            verticalArrangement = Arrangement.spacedBy(20.dp),
+                            modifier = Modifier
+                                .padding(horizontal = 20.dp)
+                                .padding(top = 15.dp)
+                        ) {
+                            PrimaryTextField(
+                                title = "Название",
+                                text = viewState.scannedPrice.name,
+                                modifier = Modifier.fillMaxWidth(),
+                                onChange = {
+                                    try {
+                                        onEvent(
+                                            MainEvent.ScannedPriceChanged(
+                                                viewState.scannedPrice.copy(
+                                                    name = it
+                                                )
+                                            )
+                                        )
+                                    } catch (e: Exception) {
+
+                                    }
+                                }
+                            )
+                            PrimaryTextField(
+                                title = "Цена",
+                                modifier = Modifier.fillMaxWidth(),
+                                text = viewState.scannedPrice.price.toString(),
+                                onChange = {
+                                    try {
+                                        onEvent(
+                                            MainEvent.ScannedPriceChanged(
+                                                viewState.scannedPrice.copy(
+                                                    price = it
+                                                )
+                                            )
+                                        )
+                                    } catch (e: Exception) {
+
+                                    }
+                                }
+                            )
+                            PrimaryTextField(
+                                title = "Категория",
+                                modifier = Modifier.fillMaxWidth(),
+                                text = viewState.scannedPrice.category,
+                                onChange = {
+                                    try {
+                                        onEvent(
+                                            MainEvent.ScannedPriceChanged(
+                                                viewState.scannedPrice.copy(
+                                                    category = it
+                                                )
+                                            )
+                                        )
+                                    } catch (e: Exception) {
+
+                                    }
+                                }
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(30.dp))
+                        Box(modifier = Modifier.padding(horizontal = 20.dp)) {
+                            PrimaryButton(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(52.dp),
+                                title = "Отправить",
+                                enabled = viewState.isLoading.not()
+                            ) {
+                                onEvent(MainEvent.ConfirmPrice)
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(45.dp))
+                    }
+                }
             }
 
         }

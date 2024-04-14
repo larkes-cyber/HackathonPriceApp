@@ -56,13 +56,13 @@ struct EditBottomSheet: View {
                 
                 CommonTextField(hint: String(name.isEmpty ? "Имя не распознано" : name ), onValueChanged: {name in
                     onPriceChange(ScannedPrice(id: scannedPrice!.id, name: name, category: scannedPrice!.category, price: scannedPrice!.price))
-                }, value: name)
+                }, initValue: name)
                 CommonTextField(hint: String(price.isEmpty ? "Цена не распознана" : price), onValueChanged: {price in
                     onPriceChange(ScannedPrice(id: scannedPrice!.id, name: scannedPrice!.name, category: scannedPrice!.category, price: price))
-                }, value: price)
+                }, initValue: price)
                 CommonTextField(hint: String(category.isEmpty ? "Категория не распознана" : category), onValueChanged: {category in
                     onPriceChange(ScannedPrice(id: scannedPrice!.id, name: scannedPrice!.name, category: category, price: scannedPrice!.price))
-                }, value: category)
+                }, initValue: category)
                 
                 Spacer()
                     .frame(height: 40)

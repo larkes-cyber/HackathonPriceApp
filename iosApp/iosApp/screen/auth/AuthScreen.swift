@@ -36,11 +36,11 @@ struct AuthScreen: View {
             if(viewModel.isRegistration){
                 CommonTextField(hint: "Введите почту", onValueChanged: {email in
                     viewModel.obtainEmailChanged(email: email)
-                })
+                }, initValue: "")
                 Spacer().frame(height: 10)
                 CommonTextField(hint: "Введите номер", onValueChanged: {number in
                     viewModel.obtainNumberChanged(number: number)
-                })
+                }, initValue: "")
                 Spacer().frame(height: 10)
             }else{
                 CommonTextField(hint: viewModel.isEmailMethod ? "Введите почту" : "Введите номер", onValueChanged: {login in
@@ -49,13 +49,13 @@ struct AuthScreen: View {
                     }else{
                         viewModel.obtainNumberChanged(number: login)
                     }
-                })
+                }, initValue: "")
             }
             
             ZStack{
                 CommonTextField(hint: "Введите пароль", isSecure: viewModel.passwordHidden, onValueChanged: {password in
                     viewModel.obtainPasswordChanged(password: password)
-                })
+                }, initValue: "")
                 HStack{
                     Spacer()
                     Button(action: {

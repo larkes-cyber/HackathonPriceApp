@@ -13,6 +13,7 @@ class UseRegistrationUser(
             authRepository.performRegistration(authData)
             Resource.Success("")
         }catch (e:Exception){
+            println(e.message + "  nnggbgggb")
             Resource.Error(e.message ?: "")
         }
     }
