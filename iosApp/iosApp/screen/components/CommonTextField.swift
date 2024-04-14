@@ -17,11 +17,12 @@ struct CommonTextField: View {
     private let isSecure:Bool
     private let onValueChanged:(String) -> Void
 
-    init(hint: String, enabled:Bool = true, isSecure:Bool = false, onValueChanged:@escaping (String) -> Void) {
+    init(hint: String, enabled:Bool = true, isSecure:Bool = false, onValueChanged:@escaping (String) -> Void, value:String = "") {
           self.hint = hint
           self.enabled = enabled
           self.isSecure = isSecure
           self.onValueChanged = onValueChanged
+          self.value = value
       }
     
     var body: some View {
