@@ -14,23 +14,35 @@ struct MainScreen: View {
     @ObservedObject private var viewModel = MainViewModel()
 
     
+    
+    
     var body: some View {
         
-        FrameView(image: handler.frame){bytes in
-            viewModel.sendPhoto(bytes: bytes)
+        
+        VStack{
+            FrameView(image: handler.frame){bytes in
+                viewModel.sendPhoto(bytes: bytes)
+            }
+            .edgesIgnoringSafeArea(.all)
+            .sheet(isPresented: $viewModel.isEditSheetPresented){
+            EditBottomSheet(
+                scannedPrice: viewModel.scannedPrice,
+                isLoading: viewModel.isLoading, error: viewModel.error,
+                onPriceChange: {viewModel.onScannedPhotoChanged(price: $0)},
+                stores: viewModel.stores,
+                onStoreSelected: {viewModel.selectStore(store: $0)},
+                confirm: {viewModel.done()}, selection: viewModel.stores[0].location
+                )
+            }
         }
-        .edgesIgnoringSafeArea(.all)
-        .sheet(isPresented: $viewModel.isEditSheetPresented){
-        EditBottomSheet(
-            scannedPrice: viewModel.scannedPrice,
-            isLoading: viewModel.isLoading, error: viewModel.error,
-            onPriceChange: {viewModel.onScannedPhotoChanged(price: $0)},
-            stores: viewModel.stores,
-            onStoreSelected: {viewModel.selectStore(store: $0)},
-            confirm: {viewModel.done()}, selection: viewModel.stores[0].location
-            )
+        .alert("Ваша заявка была успешно отправлена!", isPresented: $viewModel.isSuccessPresented) {
+            
         }
+        
+    
     }
+   
+    
 }
 
 #Preview {

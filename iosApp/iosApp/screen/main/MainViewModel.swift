@@ -56,7 +56,8 @@ class MainViewModel:ObservableObject{
         self.isLoading = true
 
         InjectUseCase().usePerformPrice.execute(performedPrice: PerformedPrice(price: scannedPrice!.price, category: scannedPrice!.category, store: selectedStore?.location ?? "", name: scannedPrice!.name), completionHandler: {res, err in
-                self.isEditSheetPresented = false
+            self.isEditSheetPresented = false
+            self.isSuccessPresented = true
             self.isLoading = false
         })
     }
