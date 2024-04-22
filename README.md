@@ -1,8 +1,8 @@
-Mobile tech: Kotlin Multiplatform, Jetpack Compose, SwiftUI
+# Mobile tech: Kotlin Multiplatform, Jetpack Compose, SwiftUI
 
-Web tech: Java Script, React
+# Web tech: Java Script, React
 
-Backend tech: Python, CV
+# Backend tech: Python, CV
 
 Video: https://www.youtube.com/watch?v=QY-kc-GFYGQ&ab_channel=AlexanderSkorokhodov
 
@@ -14,7 +14,7 @@ Video: https://www.youtube.com/watch?v=QY-kc-GFYGQ&ab_channel=AlexanderSkorokhod
 
 
 
-Screens:
+# Screens:
 
 <img width="300" alt="Снимок экрана 2024-01-04 в 15 09 34" src="https://github.com/larkes-cyber/HackathonPriceApp/assets/79082708/a22b54f3-0ce8-4964-a719-5c5fd6e0bebc">
 <img width="300" alt="Снимок экрана 2024-01-04 в 15 09 34" src="https://github.com/larkes-cyber/HackathonPriceApp/assets/79082708/972373e9-083d-4fb1-aa4c-229ed7a7d544">
