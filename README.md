@@ -5,7 +5,7 @@ An application that analyzes photos of price tags, allowing you to classify the 
 
 ## Web tech: Java Script, React
 
-## Backend tech: Python, CV
+## Backend tech: Python, Yolo
 
 ## Screencast
 https://github.com/larkes-cyber/HackathonPriceApp/assets/79082708/0d2b89d2-039e-407a-a6b5-3d9b3dafb14e
