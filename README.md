@@ -1,4 +1,5 @@
 # Hackathon price app
+An application that analyzes photos of price tags, allowing you to classify the product represented by the price tag and compare the price of the product with the "social" (maximum recommended) price
 
 ## Mobile tech: Kotlin Multiplatform, Jetpack Compose, SwiftUI
 
